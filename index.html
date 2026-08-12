@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELEV8 Fitness Gym — Coming Soon to Clane, Co. Kildare</title>
+<meta name="description" content="ELEV8 Fitness Gym is opening soon in Clane, Co. Kildare. Premium equipment, spin, step, Zumba and TRYKA/HYROX classes. Open Mon–Fri 6am–9pm, Sat 9am–4pm, Sun 9am–3pm.">
+<meta name="theme-color" content="#0A0A0A">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="ELEV8 Fitness Gym — Coming Soon to Clane, Co. Kildare">
+<meta property="og:description" content="Clane's ultimate high-performance fitness facility is opening soon. Lock in your pre-opening rate.">
+<meta property="og:image" content="assets/elev8-logo.png">
+
+<link rel="icon" href="assets/elev8-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<!-- Set before first paint: reveal only hides content when JS can bring it back. -->
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <a class="brand" href="#top" aria-label="ELEV8 Fitness Gym — home">
+      <span class="brand__mark"><img src="assets/elev8-logo.png" alt="" width="44" height="44"></span>
+      <span class="brand__text">
+        <span class="brand__name">ELEV<em>8</em></span>
+        <span class="brand__sub">Fitness Gym</span>
+      </span>
+    </a>
+
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#about"><span>About</span></a>
+      <a href="#classes"><span>Classes</span></a>
+      <a href="#amenities"><span>Amenities</span></a>
+      <a href="#progress"><span>Progress</span></a>
+      <a href="#pricing"><span>Pricing</span></a>
+      <a href="#contact"><span>Contact</span></a>
+    </nav>
+
+    <div class="nav__actions">
+      <a class="btn btn--red btn--sm" href="#pricing">See the Launch Offer</a>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu__links" aria-label="Mobile">
+    <a href="#about"><i>01</i> About</a>
+    <a href="#classes"><i>02</i> Classes</a>
+    <a href="#amenities"><i>03</i> Amenities</a>
+    <a href="#progress"><i>04</i> Progress</a>
+    <a href="#pricing"><i>05</i> Pricing</a>
+    <a href="#contact"><i>06</i> Contact</a>
+  </nav>
+  <a class="btn btn--red btn--block" href="#pricing">See the Launch Offer</a>
+  <div class="mobile-menu__meta">
+    <a href="tel:+353857357735">+353 85 735 7735</a>
+    <a href="mailto:elev8fitnessgyms@gmail.com">elev8fitnessgyms@gmail.com</a>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero" id="top">
+  <div class="hero__media">
+    <!-- Ken-Burns collage of real @elev8_fitnessgym buildout stills (fallback + underlay) -->
+    <div class="kb">
+      <div class="kb__cell" style="--d:0s"><img src="assets/reel-3-starting-with.jpg" alt="" aria-hidden="true"></div>
+      <div class="kb__cell" style="--d:-6s"><img src="assets/reel-2-lighting.jpg" alt="" aria-hidden="true"></div>
+      <div class="kb__cell" style="--d:-12s"><img src="assets/reel-1-behind-the-build.jpg" alt="" aria-hidden="true"></div>
+    </div>
+    <video class="hero__video" id="heroVideo" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="assets/hero-loop.mp4" type="video/mp4">
+    </video>
+    <div class="hero__scrim"></div>
+  </div>
+
+  <div class="hero__content wrap">
+    <p class="badge reveal">
+      <span class="badge__dot"></span>
+      Coming soon to Clane, Kildare <span class="badge__flag">🇮🇪</span>
+    </p>
+
+    <h1 class="hero__title reveal" style="--i:1">
+      <span class="line">Elev<em class="eight">8</em> Your</span>
+      <span class="line"><em>Performance</em></span>
+    </h1>
+
+    <p class="hero__sub reveal" style="--i:2">
+      Clane's ultimate high-performance fitness facility is opening soon —
+      <strong>premium equipment, a full class timetable, and on-site sauna
+      and plunge pool recovery.</strong>
+    </p>
+
+    <div class="hero__cta reveal" style="--i:3">
+      <a class="btn btn--red btn--lg" href="#pricing">Lock In Pre-Opening Rate</a>
+      <a class="btn btn--ghost btn--lg" href="#progress">Watch the Build</a>
+    </div>
+  </div>
+
+  <a class="scroll-cue" href="#about" aria-label="Scroll to about">
+    <span class="scroll-cue__line"></span>
+    <span class="scroll-cue__txt">Scroll</span>
+  </a>
+</section>
+
+<!-- ══════════════════ MARQUEE ══════════════════ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Opening Soon</span><i>✦</i><span>Clane, Co. Kildare</span><i>✦</i><span>Spin</span><i>✦</i><span>Step</span><i>✦</i><span>Zumba</span><i>✦</i><span>TRYKA / HYROX</span><i>✦</i><span>Sauna &amp; Plunge Pool</span><i>✦</i>
+    <span>Opening Soon</span><i>✦</i><span>Clane, Co. Kildare</span><i>✦</i><span>Spin</span><i>✦</i><span>Step</span><i>✦</i><span>Zumba</span><i>✦</i><span>TRYKA / HYROX</span><i>✦</i><span>Sauna &amp; Plunge Pool</span><i>✦</i>
+  </div>
+</div>
+
+<!-- ══════════════════ ABOUT ══════════════════ -->
+<section class="section" id="about">
+  <div class="wrap">
+    <header class="sec-head reveal">
+      <p class="eyebrow"><i>01</i> About</p>
+      <h2 class="sec-title">Built in Clane.<br>Built for <em>everyone</em>.</h2>
+      <p class="sec-lead">
+        We're gutting a space in the heart of Clane and rebuilding it into the kind of gym
+        this town has been missing — serious equipment, a real class timetable, recovery
+        facilities, and doors open early enough for the before-work crowd.
+      </p>
+    </header>
+
+    <div class="cards">
+      <article class="card reveal" style="--i:0">
+        <span class="card__num">01</span>
+        <h3>Premium Equipment</h3>
+        <p>Commercial-grade racks, plates and machines specced from day one. No queues for the bar, no worn-out kit.</p>
+      </article>
+      <article class="card reveal" style="--i:1">
+        <span class="card__num">02</span>
+        <h3>Full Class Timetable</h3>
+        <p>Spin, step, Zumba and TRYKA/HYROX race training, plus dedicated retirees and ladies-only classes — on a real studio floor.</p>
+      </article>
+      <article class="card reveal" style="--i:2">
+        <span class="card__num">03</span>
+        <h3>Sauna &amp; Plunge Pool</h3>
+        <p>Proper recovery on site. Contrast therapy after a hard session, €10 a visit for members.</p>
+      </article>
+      <article class="card reveal" style="--i:3">
+        <span class="card__num">04</span>
+        <h3>Local &amp; Independent</h3>
+        <p>Owned and run in Clane. No call-centre cancellations, no faceless chain policy — just your gym, down the road. <strong>Over 18s only.</strong></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CLASSES ══════════════════ -->
+<section class="section section--alt" id="classes">
+  <div class="wrap">
+    <header class="sec-head sec-head--split reveal">
+      <div>
+        <p class="eyebrow"><i>02</i> Classes</p>
+        <h2 class="sec-title">Train to a <em>Beat</em></h2>
+      </div>
+      <p class="sec-lead">
+        Four class formats on a dedicated studio floor — from full-tilt cardio to official
+        hybrid race training — plus retirees and ladies-only slots. Book by session pack
+        or bundle with your membership.
+      </p>
+    </header>
+
+    <div class="classes">
+
+      <article class="klass reveal" style="--i:0">
+        <div class="klass__media">
+          <img src="assets/classes/spin.jpg" alt="Riders mid-session in a red-lit indoor cycling studio" loading="lazy" width="900" height="672">
+        </div>
+        <div class="klass__body">
+          <span class="klass__tag">Cardio</span>
+          <h3 class="klass__title">Spin</h3>
+          <p>Ride to the beat in a dark, red-lit studio. Climbs, sprints and intervals on commercial bikes — every level in the same room, at the same tempo.</p>
+          <ul class="klass__meta">
+            <li>45 min</li>
+            <li>All levels</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="klass reveal" style="--i:1">
+        <div class="klass__media">
+          <img src="assets/classes/step.jpg" alt="Group step aerobics class mid-routine on step platforms" loading="lazy" width="900" height="672">
+        </div>
+        <div class="klass__body">
+          <span class="klass__tag">Cardio</span>
+          <h3 class="klass__title">Step Aerobics</h3>
+          <p>Old-school conditioning that still works. Choreographed step routines that build coordination, stamina and serious leg endurance.</p>
+          <ul class="klass__meta">
+            <li>45 min</li>
+            <li>All levels</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="klass reveal" style="--i:2">
+        <div class="klass__media">
+          <img src="assets/classes/zumba.jpg" alt="Latin dance fitness class mid-routine" loading="lazy" width="900" height="672">
+          <span class="klass__brand"><img class="klass__logo" src="assets/brands/zumba.svg" alt="Zumba" width="120" height="39" loading="lazy"></span>
+        </div>
+        <div class="klass__body">
+          <span class="klass__tag">Dance Fitness</span>
+          <h3 class="klass__title">Zumba<sup>®</sup></h3>
+          <p>Latin rhythms, zero judgement. A dance-fitness party that burns like a workout and feels like a night out.</p>
+          <ul class="klass__meta">
+            <li>45 min</li>
+            <li>No experience needed</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="klass reveal" style="--i:3">
+        <div class="klass__media">
+          <img src="assets/classes/tryka.jpg" alt="Athlete pushing a weighted sled in hybrid race training" loading="lazy" width="900" height="672">
+          <span class="klass__brand klass__brand--race"><img class="klass__logo" src="assets/brands/tryka.svg" alt="TRYKA" width="118" height="17" loading="lazy"><span class="klass__brand-sep" aria-hidden="true"></span><img class="klass__logo" src="assets/brands/hyrox.svg" alt="HYROX" width="96" height="13" loading="lazy"></span>
+        </div>
+        <div class="klass__body">
+          <span class="klass__tag">Hybrid Race</span>
+          <h3 class="klass__title">TRYKA / HYROX</h3>
+          <p>Hybrid race training on <strong>official HYROX centre equipment</strong> — sled push and pull, ski erg, rower, ram thrusters, lunges and burpee broad jumps. The exact stations you'll meet on race day.</p>
+          <ul class="klass__meta">
+            <li>35–45 min</li>
+            <li>Scalable</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="klass-also__label reveal">Also on the timetable</p>
+
+    <div class="klass-also">
+      <article class="also reveal" style="--i:0">
+        <span class="also__tag">Dedicated</span>
+        <h3 class="also__title">Retirees Classes</h3>
+        <p>
+          Daytime sessions built for older members — mobility, balance, and steady
+          strength work at a sensible pace, in a room of people the same age.
+        </p>
+      </article>
+      <article class="also reveal" style="--i:1">
+        <span class="also__tag">Dedicated</span>
+        <h3 class="also__title">Ladies-Only Classes</h3>
+        <p>
+          Women-only slots on the timetable for anyone who trains more comfortably
+          that way — same coaching, same equipment, own space.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ AMENITIES & CAFE ══════════════════ -->
+<section class="section" id="amenities">
+  <div class="wrap">
+    <header class="sec-head sec-head--split reveal">
+      <div>
+        <p class="eyebrow"><i>03</i> Amenities</p>
+        <h2 class="sec-title">Recover. <em>Refuel.</em></h2>
+      </div>
+      <p class="sec-lead">
+        The work doesn't stop at the last rep. On-site contrast therapy to bring you back down,
+        and a proper cafe to get you back up.
+      </p>
+    </header>
+
+    <div class="amenities">
+
+      <article class="amenity reveal" style="--i:0">
+        <div class="amenity__media">
+          <img src="assets/amenities/recovery.jpg" alt="Cedar sauna beside two chilled plunge pools" loading="lazy" width="900" height="672">
+        </div>
+        <div class="amenity__body">
+          <span class="amenity__tag">Recovery Suite</span>
+          <h3 class="amenity__title">Sauna &amp; Plunge Pools</h3>
+          <p>
+            Full contrast therapy on site. Sweat it out, drop your core temperature, go again —
+            the half of training most gyms leave you to sort out yourself.
+          </p>
+          <ul class="spec">
+            <li><b>8</b><span>Person sauna</span></li>
+            <li><b>2</b><span>Chilled plunge pools</span></li>
+          </ul>
+          <p class="amenity__note">
+            Both plunge pools are temperature-controlled, so the cold is the same every session —
+            no guessing, no waiting for a refill.
+          </p>
+        </div>
+      </article>
+
+      <article class="amenity amenity--cafe reveal" style="--i:1">
+        <div class="amenity__media">
+          <img src="assets/amenities/cafe.jpg" alt="The ELEV8 Fitness Gym Café counter — espresso machine, protein bar display, supplement shelving and branded drinks fridge" loading="lazy" width="1200" height="900">
+        </div>
+        <div class="amenity__body">
+          <span class="amenity__tag">The Cafe</span>
+          <h3 class="amenity__title"><strong class="brandname">Flexpresso</strong></h3>
+          <p>
+            A proper cafe first — flat whites, americanos, cappuccinos, made properly — with a
+            protein twist for anyone who wants one.
+          </p>
+          <ul class="menu">
+            <li><b>Coffee, done right</b> — the full espresso menu, no compromise.</li>
+            <li><b>Custom protein shakes</b> — built around your favourite flavours.</li>
+            <li><b>Optional add-ins</b> — throw in a scoop of creatine or your pick of extras.</li>
+            <li><b>Protein bars &amp; snacks</b> — the popular brands, in stock.</li>
+          </ul>
+          <p class="amenity__note">
+            Come in for a coffee whether you're training that day or not.
+          </p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ PROGRESS ══════════════════ -->
+<section class="section section--alt" id="progress">
+  <div class="wrap">
+    <header class="sec-head sec-head--split reveal">
+      <div>
+        <p class="eyebrow"><i>04</i> Behind the Scenes</p>
+        <h2 class="sec-title">Watch the <em>Build</em> Process</h2>
+      </div>
+      <p class="sec-lead">
+        Every bag of rubble, every stud wall, every light fitting — filmed and posted as it happens.
+        These are the real progress reels from <a class="ilink" href="https://www.instagram.com/elev8_fitnessgym" target="_blank" rel="noopener">@elev8_fitnessgym</a>.
+      </p>
+    </header>
+
+    <!-- Latest post, featured -->
+    <div class="feature reveal">
+      <div class="feature__media">
+        <div class="reel__frame" data-reel="Dbq5rumKRkp">
+          <img src="assets/reel-4-latest.jpg" alt="Latest progress reel: painted walls and ceiling lighting installed" width="360" height="640">
+          <button class="reel__play" aria-label="Play the latest progress reel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+          <span class="reel__tag reel__tag--live">Latest</span>
+        </div>
+      </div>
+      <div class="feature__body">
+        <p class="eyebrow"><i>New</i> Latest Update</p>
+        <h3 class="feature__title">It's Starting to<br>Look Like a <em>Gym</em></h3>
+        <p>
+          Walls painted in ELEV8 black and red, the hex lighting rig up and running, and the
+          studio floor taking shape. The scissor lift is still in — but not for much longer.
+        </p>
+        <div class="feature__cta">
+          <a class="btn btn--red" href="https://www.instagram.com/reel/Dbq5rumKRkp/" target="_blank" rel="noopener">Watch on Instagram</a>
+          <a class="btn btn--ghost" href="#pricing">Lock In Your Rate</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="reels__label reveal">Earlier updates</p>
+
+    <div class="reels">
+      <article class="reel reveal" style="--i:0">
+        <div class="reel__frame" data-reel="DbO9oeFKVrF">
+          <img src="assets/reel-3-starting-with.jpg" alt="Progress reel: the raw, gutted unit before work began" loading="lazy" style="--sc:1.58;--sy:-23%">
+          <button class="reel__play" aria-label="Play progress reel from 25 July"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+          <span class="reel__tag">Day One</span>
+        </div>
+        <div class="reel__meta">
+          <h3>“This is what we're starting with…”</h3>
+          <time datetime="2026-07-25">25 July 2026</time>
+        </div>
+      </article>
+
+      <article class="reel reveal" style="--i:1">
+        <div class="reel__frame" data-reel="DbV__Y_qb39">
+          <img src="assets/reel-2-lighting.jpg" alt="Progress reel: walkthrough of the cleared gym floor" loading="lazy">
+          <button class="reel__play" aria-label="Play progress reel from 28 July"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+          <span class="reel__tag">Stripped Back</span>
+        </div>
+        <div class="reel__meta">
+          <h3>The floor, cleared and ready</h3>
+          <time datetime="2026-07-28">28 July 2026</time>
+        </div>
+      </article>
+
+      <article class="reel reveal" style="--i:2">
+        <div class="reel__frame" data-reel="Dbf3pQKKRdm">
+          <img src="assets/reel-1-behind-the-build.jpg" alt="Progress reel: the team fitting out the space" loading="lazy">
+          <button class="reel__play" aria-label="Play progress reel from 1 August"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>
+          <span class="reel__tag">Fit-Out</span>
+        </div>
+        <div class="reel__meta">
+          <h3>Behind the scenes with the crew</h3>
+          <time datetime="2026-08-01">1 August 2026</time>
+        </div>
+      </article>
+    </div>
+
+    <p class="reels__foot reveal">
+      New progress posted every week —
+      <a class="ilink" href="https://www.instagram.com/elev8_fitnessgym" target="_blank" rel="noopener">follow along on Instagram →</a>
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════ PRICING ══════════════════ -->
+<section class="section" id="pricing">
+  <div class="wrap">
+    <header class="sec-head sec-head--center reveal">
+      <p class="eyebrow"><i>05</i> Membership &amp; Pricing</p>
+      <h2 class="sec-title">Pick Your <em>Plan</em></h2>
+      <p class="sec-lead">
+        Straight pricing, no tiers to decode. Pay monthly or save by paying upfront —
+        and students pay less, with no sign-up fee.
+      </p>
+    </header>
+
+    <!-- Membership status -->
+    <div class="status reveal">
+      <span class="status__pulse" aria-hidden="true"></span>
+      <p><strong>Registration for memberships coming soon.</strong> Prices below are confirmed — sign-up on the app will be coming soon.</p>
+    </div>
+
+    <!-- Launch offer -->
+    <div class="tiers reveal">
+      <div class="tiers__head">
+        <span class="tiers__flag">Launch Offer</span>
+        <p>Founding-member terms, applied in <strong>sign-up order</strong>.</p>
+      </div>
+      <ol class="tiers__list">
+        <li class="tier tier--gold reveal" style="--i:0">
+          <span class="tier__rank">First 50 members</span>
+          <span class="tier__off"><b>10</b><i>% off</i></span>
+          <span class="tier__note">No sign-on fee · 10% off your first 3 months</span>
+        </li>
+        <li class="tier reveal" style="--i:1">
+          <span class="tier__rank">Members 51 – 100</span>
+          <span class="tier__off"><b>€0</b><i>sign-on</i></span>
+          <span class="tier__note">No sign-on fee</span>
+        </li>
+      </ol>
+      <p class="tiers__fine">The €25 admin sign-up fee is waived for the first 100 members. Over 18s only.</p>
+    </div>
+
+    <p class="stack__hint reveal" aria-hidden="true">Keep scrolling — each plan stacks over the last</p>
+
+    <div class="stack">
+
+      <article class="pkg reveal reveal--fade" style="--i:0">
+        <div class="pkg__inner">
+          <span class="pkg__idx">01</span>
+          <div class="pkg__body">
+            <span class="pkg__tag">Standard Membership</span>
+            <h3>Gym Only</h3>
+            <p>Full run of the floor — free weights, resistance machines and the complete cardio suite.</p>
+            <p class="pkg__fine">Plus a one-time admin sign-up fee of <strong>€25</strong> — waived for the first 100 members.</p>
+          </div>
+          <div class="pkg__buy">
+            <p class="pkg__price"><span>€</span><b>70</b></p>
+            <p class="pkg__per">per month</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="pkg reveal reveal--fade" style="--i:1">
+        <div class="pkg__inner">
+          <span class="pkg__idx">02</span>
+          <div class="pkg__body">
+            <span class="pkg__tag">Standard Membership</span>
+            <h3>Small Group PT <span class="pkg__plus">+ full gym access</span></h3>
+            <p>Everything in Gym Only — the full floor, machines and cardio suite — <strong>plus 10 coached small-group PT sessions a month</strong>.</p>
+            <p class="pkg__fine">Full gym access included, not billed separately. Admin sign-up fee of <strong>€25</strong> applies.</p>
+          </div>
+          <div class="pkg__buy">
+            <p class="pkg__price"><span>€</span><b>159</b></p>
+            <p class="pkg__per">per month</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="pkg reveal reveal--fade" style="--i:2">
+        <div class="pkg__inner">
+          <span class="pkg__idx">03</span>
+          <div class="pkg__body">
+            <span class="pkg__tag">Standard · Pay Upfront</span>
+            <h3>Save By Paying Ahead</h3>
+            <p>Same full gym access, paid in one go. The longer the term, the lower the effective monthly rate.</p>
+            <table class="rates">
+              <caption class="visually-hidden">Standard upfront payment options</caption>
+              <tbody>
+                <tr><th scope="row">3 months</th><td>€200</td></tr>
+                <tr><th scope="row">6 months</th><td>€395</td></tr>
+                <tr><th scope="row">12 months</th><td>€770</td></tr>
+              </tbody>
+            </table>
+            <p class="pkg__fine">Admin sign-up fee of <strong>€25</strong> applies to all standard memberships.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="pkg reveal reveal--fade" style="--i:3">
+        <div class="pkg__inner">
+          <span class="pkg__idx">04</span>
+          <div class="pkg__body">
+            <span class="pkg__tag">Student Rates</span>
+            <h3>Student <span class="pkg__plus">no sign-up fee</span></h3>
+            <p>Valid student ID required. Same access, lower rate, and the €25 admin fee doesn't apply.</p>
+            <table class="rates">
+              <caption class="visually-hidden">Student rates</caption>
+              <tbody>
+                <tr><th scope="row">Monthly</th><td>€55</td></tr>
+                <tr><th scope="row">3 months</th><td>€155</td></tr>
+                <tr><th scope="row">6 months</th><td>€300</td></tr>
+                <tr><th scope="row">12 months</th><td>€575</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+
+      <article class="pkg reveal reveal--fade" style="--i:4">
+        <div class="pkg__inner">
+          <span class="pkg__idx">05</span>
+          <div class="pkg__body">
+            <span class="pkg__tag">Class Packs</span>
+            <h3>Studio Classes</h3>
+            <p>Buy a block and use it whenever suits your week. Open to members and non-members alike.</p>
+            <table class="rates">
+              <caption class="visually-hidden">Class pack prices</caption>
+              <tbody>
+                <tr><th scope="row">Spinning <span>8 sessions</span></th><td>€80</td></tr>
+                <tr><th scope="row">Spinning <span>12 sessions</span></th><td>€110</td></tr>
+                <tr><th scope="row">Step Aerobics <span>8 classes</span></th><td>€80</td></tr>
+                <tr><th scope="row">Zumba<sup>®</sup> <span>8 classes</span></th><td>€80</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+
+      <article class="pkg reveal reveal--fade" style="--i:5">
+        <div class="pkg__inner">
+          <span class="pkg__idx">06</span>
+          <div class="pkg__body">
+            <span class="pkg__tag">Recovery Add-On</span>
+            <h3>Sauna + Plunge Pool</h3>
+            <p>Contrast therapy on site — 8-person sauna and two temperature-controlled plunge pools. Pay per visit, no block to buy up front.</p>
+            <p class="pkg__fine"><strong>Members only.</strong> Added to any membership.</p>
+          </div>
+          <div class="pkg__buy">
+            <p class="pkg__price"><span>€</span><b>10</b></p>
+            <p class="pkg__per">per session</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="stack__foot reveal">
+      Over 18s only. Sign-up on the app coming soon.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════ SOCIAL ══════════════════ -->
+<section class="section section--alt" id="social">
+  <div class="wrap">
+    <header class="sec-head sec-head--center reveal">
+      <p class="eyebrow"><i>06</i> Community</p>
+      <h2 class="sec-title">Follow the <em>Journey</em></h2>
+      <p class="sec-lead">The build, the kit deliveries, the opening date — it all lands on our socials first.</p>
+    </header>
+
+    <div class="socials">
+      <a class="social social--ig reveal" style="--i:0" href="https://www.instagram.com/elev8_fitnessgym" target="_blank" rel="noopener">
+        <span class="social__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91a5.9 5.9 0 0 0 1.38 2.13 5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>
+        </span>
+        <span class="social__body">
+          <b>Instagram</b>
+          <span>@elev8_fitnessgym</span>
+          <em>Progress reels, kit reveals &amp; opening news</em>
+        </span>
+        <span class="social__go" aria-hidden="true">↗</span>
+      </a>
+
+      <a class="social social--fb reveal" style="--i:1" href="https://www.facebook.com/elev8fitnessgym" target="_blank" rel="noopener">
+        <span class="social__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.96h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+        </span>
+        <span class="social__body">
+          <b>Facebook</b>
+          <span>elev 8 fitness gym</span>
+          <em>Community updates &amp; opening day details</em>
+        </span>
+        <span class="social__go" aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CONTACT ══════════════════ -->
+<section class="section section--contact" id="contact">
+  <div class="wrap">
+    <div class="contact">
+
+      <div class="contact__info">
+        <p class="eyebrow reveal"><i>07</i> Find Us</p>
+        <h2 class="sec-title reveal" style="--i:1">Clane,<br>Co. <em>Kildare</em></h2>
+
+        <dl class="info-list reveal" style="--i:2">
+          <div class="info-list__row">
+            <dt>Location</dt>
+            <dd>Clane, Co. Kildare, Ireland<br><span class="muted">Full address announced at opening</span></dd>
+          </div>
+          <div class="info-list__row">
+            <dt>Parking</dt>
+            <dd>Plenty of free parking spaces<br><span class="muted">On site, no permit, no meter</span></dd>
+          </div>
+          <div class="info-list__row">
+            <dt>Opening Hours</dt>
+            <dd>
+              <span class="hours"><i>Mon – Fri</i><b>6:00&nbsp;AM – 9:00&nbsp;PM</b></span>
+              <span class="hours"><i>Saturday</i><b>9:00&nbsp;AM – 4:00&nbsp;PM</b></span>
+              <span class="hours"><i>Sunday</i><b>9:00&nbsp;AM – 3:00&nbsp;PM</b></span>
+            </dd>
+          </div>
+          <div class="info-list__row">
+            <dt>Phone</dt>
+            <dd><a class="ilink" href="tel:+353857357735">+353 85 735 7735</a></dd>
+          </div>
+          <div class="info-list__row">
+            <dt>Email</dt>
+            <dd><a class="ilink" href="mailto:elev8fitnessgyms@gmail.com">elev8fitnessgyms@gmail.com</a></dd>
+          </div>
+        </dl>
+
+        <div class="quick reveal" style="--i:3">
+          <a class="btn btn--red btn--lg" href="tel:+353857357735"><span aria-hidden="true">📞</span> Call Us</a>
+          <a class="btn btn--ghost btn--lg" href="mailto:elev8fitnessgyms@gmail.com"><span aria-hidden="true">✉</span> Email Us</a>
+        </div>
+
+        <p class="contact__foot reveal" style="--i:4">
+          Ask about the launch offer when you get in touch — the first 50 members get
+          <strong>no sign-on fee and 10% off their first 3 months</strong>. Over 18s only.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top reveal">
+      <a class="brand brand--lg" href="#top">
+        <span class="brand__mark"><img src="assets/elev8-logo.png" alt="ELEV8 Fitness Gym logo" width="64" height="64"></span>
+        <span class="brand__text">
+          <span class="brand__name">ELEV<em>8</em></span>
+          <span class="brand__sub">Fitness Gym — Clane</span>
+        </span>
+      </a>
+
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="#about">About</a>
+        <a href="#classes">Classes</a>
+        <a href="#amenities">Amenities</a>
+        <a href="#progress">Progress</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="footer__social">
+        <a href="https://www.instagram.com/elev8_fitnessgym" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91a5.9 5.9 0 0 0 1.38 2.13 5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0z"/><path d="M12 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4z"/><circle cx="18.41" cy="5.59" r="1.44"/></svg>
+        </a>
+        <a href="https://www.facebook.com/elev8fitnessgym" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.96h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer__bar reveal" style="--i:1">
+      <p>&copy; <span id="yr">2026</span> ELEV8 Fitness Gym. Clane, Co. Kildare, Ireland.</p>
+      <p class="footer__hours">Mon–Fri 6AM–9PM · Sat 9AM–4PM · Sun 9AM–3PM</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
