@@ -9,6 +9,7 @@
   --red:#E50914;
   --red-hot:#FF1E27;
   --metal:#8A8A8E;
+  --hyrox:#FFED00;   /* official HYROX yellow */
   --metal-lt:#B0B0B0;
   --white:#FFFFFF;
   --body:#A0A0A0;
@@ -405,10 +406,12 @@ input{font:inherit}
 .hero__sub{
   font-size:clamp(1rem,1.9vw,1.2rem);
   max-width:54ch;
-  color:var(--metal-lt);
+  color:var(--white);
   margin-bottom:clamp(26px,4.5vh,42px);
 }
 .hero__sub strong{color:var(--white);font-weight:600}
+/* Age note sits back from the white headline copy without shrinking */
+.hero__sub-note{color:var(--metal-lt)}
 
 .hero__cta{display:flex;flex-wrap:wrap;gap:14px}
 
@@ -463,6 +466,9 @@ input{font:inherit}
 
 .sec-head{margin-bottom:clamp(46px,6vw,74px)}
 .sec-head .sec-title{margin-bottom:22px}
+/* Headings that no longer have a lead paragraph shouldn't keep the gap that
+   was there to separate them from it. Degrades to the old spacing without :has. */
+.sec-head:not(:has(.sec-lead)) .sec-title{margin-bottom:0}
 .sec-head--center{text-align:center;max-width:760px;margin-inline:auto}
 .sec-head--center .eyebrow{justify-content:center}
 .sec-head--center .eyebrow::after{display:none}
@@ -473,12 +479,24 @@ input{font:inherit}
 .sec-head--split .sec-title{margin-bottom:0}
 
 /* ─────────── ABOUT CARDS ─────────── */
+/* Five cards now the cafe has its own. auto-fit gave 4+1 on desktop and
+   left a lone card stranded, so the column count is set explicitly to land
+   on 5 / 3+2 / 2+2+1 / 1 — never a single orphan on a wide screen. */
 .cards{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  grid-template-columns:1fr;
   gap:1px;
   background:var(--hair);
   border:1px solid var(--hair);
+}
+@media (min-width:560px){ .cards{grid-template-columns:repeat(2,1fr)} }
+@media (min-width:900px){ .cards{grid-template-columns:repeat(3,1fr)} }
+@media (min-width:1180px){
+  .cards{grid-template-columns:repeat(5,1fr)}
+  /* narrower columns need tighter gutters to keep the copy readable */
+  .card{padding:clamp(20px,1.9vw,26px)}
+  .card h3{font-size:1.18rem}
+  .card p{font-size:.88rem}
 }
 .card{
   background:var(--black);
@@ -939,11 +957,41 @@ input{font:inherit}
   color:var(--metal);margin:8px 0 14px;
 }
 
-.stack__foot{
+/* Signup block closes the pricing section. It inherits the negative pull the
+   old footer line used, so it clears the sticky stack's scroll runway. */
+.signup{
   margin-top:-30vh;
   position:relative;z-index:20;
   text-align:center;
-  font-family:var(--cond);font-size:1.02rem;letter-spacing:.04em;
+  border:1px solid rgba(229,9,20,.45);
+  background:
+    radial-gradient(90% 140% at 50% 0%,rgba(229,9,20,.2),transparent 65%),
+    linear-gradient(180deg,#26262C 0%,#1B1B20 100%);
+  padding:clamp(30px,4vw,48px) clamp(22px,3vw,40px);
+}
+.signup__eyebrow{
+  font-family:var(--cond);
+  font-size:.76rem;font-weight:700;
+  letter-spacing:.24em;text-transform:uppercase;
+  color:var(--red);margin-bottom:12px;
+}
+.signup__title{
+  font-family:var(--display);
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  font-weight:400;line-height:1;
+  text-transform:uppercase;color:var(--white);
+  margin-bottom:14px;
+}
+.signup__title em{font-style:normal;color:var(--red)}
+.signup__lead{
+  max-width:46ch;margin:0 auto clamp(22px,3vw,30px);
+  font-size:clamp(.96rem,1.5vw,1.06rem);color:var(--metal-lt);
+}
+.signup .btn{min-width:min(320px,100%)}
+.signup__ext{font-size:1.1em;line-height:1}
+.signup__fine{
+  margin-top:16px;
+  font-size:.84rem;color:var(--metal);
 }
 
 /* stacked opening hours in the contact panel */
@@ -963,7 +1011,7 @@ input{font:inherit}
   .pkg{position:static}
   .stack{padding-bottom:0}
   .stack__hint{display:none}
-  .stack__foot{margin-top:34px}
+  .signup{margin-top:34px}
 }
 @media (max-width:560px){
   .classes{grid-template-columns:1fr}
@@ -1012,51 +1060,51 @@ input{font:inherit}
   border-bottom:1px solid var(--hair);
 }
 
-/* ═══════════════ AMENITIES & CAFE ═══════════════ */
-.amenities{
+/* ═══════════════ FACILITIES & CAFE ═══════════════ */
+.facilities{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:clamp(18px,2.4vw,30px);
 }
-.amenity{
+.facility{
   display:flex;flex-direction:column;
   background:linear-gradient(180deg,#2A2A2E 0%,#1D1D20 100%);
   border:1px solid rgba(255,255,255,.1);
   overflow:hidden;
   transition:transform .5s var(--ease),border-color .4s var(--ease),box-shadow .5s var(--ease);
 }
-.amenity:hover{
+.facility:hover{
   transform:translateY(-6px);
   border-color:var(--red);
   box-shadow:0 26px 60px -26px rgba(229,9,20,.5);
 }
-.amenity__media{position:relative;aspect-ratio:4/3;overflow:hidden;flex:0 0 auto;background:var(--black)}
-.amenity__media img{
+.facility__media{position:relative;aspect-ratio:4/3;overflow:hidden;flex:0 0 auto;background:var(--black)}
+.facility__media img{
   width:100%;height:100%;object-fit:cover;
   transition:transform .8s var(--ease);
 }
-.amenity:hover .amenity__media img{transform:scale(1.05)}
-.amenity__media::after{
+.facility:hover .facility__media img{transform:scale(1.05)}
+.facility__media::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(180deg,transparent 55%,rgba(20,20,22,.8) 100%);
 }
 
-.amenity__body{padding:clamp(22px,2.6vw,34px);display:flex;flex-direction:column;flex:1 1 auto}
-.amenity__tag{
+.facility__body{padding:clamp(22px,2.6vw,34px);display:flex;flex-direction:column;flex:1 1 auto}
+.facility__tag{
   font-family:var(--cond);
   font-size:.7rem;font-weight:700;
   letter-spacing:.22em;text-transform:uppercase;
   color:var(--red);margin-bottom:10px;
 }
-.amenity__title{
+.facility__title{
   font-family:var(--display);
   font-size:clamp(1.5rem,2.8vw,2.1rem);
   font-weight:400;line-height:1.02;
   text-transform:uppercase;color:var(--white);
   margin-bottom:12px;
 }
-.amenity__body > p{font-size:.96rem;color:var(--metal-lt)}
-.amenity__note{
+.facility__body > p{font-size:.96rem;color:var(--metal-lt)}
+.facility__note{
   margin-top:auto;padding-top:16px;
   font-size:.86rem;color:var(--metal);
   border-top:1px solid rgba(255,255,255,.1);
@@ -1069,17 +1117,32 @@ input{font:inherit}
 }
 
 /* hard numbers for the recovery suite */
-.spec{list-style:none;display:flex;gap:clamp(20px,3vw,40px);margin:22px 0 4px}
-.spec li{display:flex;align-items:baseline;gap:9px}
+/* Figure and label share one line. Two equal columns so the pair fills the
+   card width instead of huddling at the left, with type scaled to match. */
+.spec{
+  list-style:none;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px clamp(16px,2.4vw,28px);
+  margin:clamp(24px,3vw,32px) 0 6px;
+  padding-block:clamp(16px,2vw,22px);
+  border-block:1px solid rgba(255,255,255,.1);
+}
+.spec li{display:flex;align-items:baseline;gap:12px}
 .spec b{
   font-family:var(--display);font-weight:400;
-  font-size:clamp(1.8rem,3.4vw,2.5rem);
-  color:var(--white);line-height:1;
+  font-size:clamp(2.6rem,5.2vw,3.6rem);
+  color:var(--white);line-height:.85;
 }
 .spec span{
-  font-family:var(--cond);font-size:.74rem;font-weight:600;
-  letter-spacing:.16em;text-transform:uppercase;color:var(--metal);
-  max-width:9ch;line-height:1.25;
+  font-family:var(--cond);
+  font-size:clamp(.82rem,1.15vw,.95rem);
+  font-weight:600;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--metal-lt);
+  line-height:1.15;
+}
+@media (max-width:520px){
+  .spec{grid-template-columns:1fr}
 }
 
 /* cafe offer list */
@@ -1135,17 +1198,22 @@ input{font:inherit}
   font-family:var(--cond);font-size:.76rem;font-weight:700;
   letter-spacing:.22em;text-transform:uppercase;color:var(--metal-lt);
 }
-.tier__off{display:flex;align-items:baseline;gap:3px;color:var(--white)}
-.tier__off b{
-  font-family:var(--display);font-weight:400;
-  font-size:clamp(2.4rem,5vw,3.4rem);line-height:.9;
+/* The whole offer line runs at one display size — "no sign-on fee" is as
+   loud as the "€0" it sits beside, rather than dropping to a caption. */
+.tier__off{
+  display:block;
+  font-family:var(--display);
+  font-size:clamp(1.55rem,3.3vw,2.35rem);
+  font-weight:400;line-height:1;
+  text-transform:uppercase;
+  color:var(--white);
+  text-wrap:balance;
 }
-.tier--gold .tier__off b{color:var(--red)}
-.tier__off i{
-  font-style:normal;font-family:var(--cond);
-  font-size:1rem;font-weight:700;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--metal-lt);
+.tier__off em{
+  font-style:normal;
+  color:var(--white);
 }
+.tier--gold .tier__off em{color:var(--red)}
 .tier__note{
   font-family:var(--cond);font-size:.78rem;font-weight:600;
   letter-spacing:.12em;text-transform:uppercase;color:var(--metal);
@@ -1156,13 +1224,12 @@ input{font:inherit}
 @media (max-width:900px){
   .feature{grid-template-columns:1fr;gap:24px}
   .feature__media{max-width:280px}
-  .amenities{grid-template-columns:1fr}
+  .facilities{grid-template-columns:1fr}
   /* stack is a plain list at this width, so drop the recede transform too */
   .pkg__inner{transform:none;filter:none}
 }
 @media (max-width:560px){
   .tiers__list{grid-template-columns:1fr}
-  .spec{flex-direction:column;gap:14px}
   .feature__cta{flex-direction:column;align-items:stretch}
   .feature__cta .btn{width:100%}
 }
@@ -1293,4 +1360,56 @@ input{font:inherit}
 @media (max-width:620px){
   .rates td{font-size:1.15rem;padding-left:12px}
   .status{flex-direction:row}
+}
+
+
+/* ═══════════════ HERO — PHASE 1 ANNOUNCEMENT ═══════════════ */
+.hero__flash{
+  display:inline-flex;align-items:center;gap:14px;flex-wrap:wrap;
+  border:1px solid rgba(229,9,20,.5);
+  background:linear-gradient(180deg,rgba(229,9,20,.16),rgba(229,9,20,.05));
+  padding:10px 18px 10px 10px;
+  margin-bottom:clamp(20px,3.4vh,32px);
+  font-family:var(--cond);
+  font-size:clamp(.95rem,1.6vw,1.12rem);
+  font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--metal-lt);
+}
+.hero__flash-tag{
+  background:var(--red);color:#fff;
+  font-size:.8rem;font-weight:700;letter-spacing:.2em;
+  padding:6px 12px;
+}
+.hero__flash strong{color:var(--white);font-weight:700}
+
+/* ═══════════════ HYROX — OFFICIAL YELLOW/BLACK ═══════════════ */
+/* #FFED00 on black, taken from HYROX's own brand tokens. */
+.klass--hyrox{
+  --accent:var(--hyrox);
+  border-color:rgba(255,237,0,.3);
+  background:linear-gradient(180deg,#26261C 0%,#1A1A14 100%);
+}
+.klass--hyrox:hover{
+  border-color:var(--hyrox);
+  box-shadow:0 26px 60px -26px rgba(255,237,0,.45);
+}
+.klass--hyrox .klass__tag{color:var(--hyrox)}
+.klass--hyrox .klass__media::after{
+  background:linear-gradient(180deg,transparent 45%,rgba(18,18,10,.9) 100%);
+}
+.klass--hyrox .klass__meta li{border-color:rgba(255,237,0,.28)}
+.klass--hyrox .klass__body p strong{color:var(--hyrox)}
+/* the HYROX wordmark keeps its own yellow rather than the shared white */
+.klass--hyrox .klass__logo:first-child{
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.9));
+}
+
+/* Eircode sits as its own line in the address */
+.eircode{
+  display:block;
+  font-family:var(--cond);
+  font-size:.9rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--white);
+  margin-top:2px;
 }
