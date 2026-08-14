@@ -13,6 +13,36 @@
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
+  /* ── Ticker: keep one sequence wider than the viewport ──
+     The banner loops by sliding the track exactly half its width, which
+     only lands seamlessly while a single sequence covers the full viewport.
+     The markup ships enough repeats for a phone; on wider screens the
+     sequence would run out mid-loop and flash a gap at the right edge, so
+     repeat its contents until it spans the viewport. Degrades to the
+     shipped repeats if this never runs. */
+  const tickerSeqs = $$('.ticker__seq');
+  if (tickerSeqs.length) {
+    const unit = tickerSeqs[0].innerHTML;
+    // The shipped markup is already one unit, so the starting count is 1.
+    let fitted = 1;
+
+    const fitTicker = () => {
+      // Re-measured every time: the unit's width changes with the font size
+      // at the mobile breakpoint, so this self-corrects on resize.
+      const one = tickerSeqs[0].getBoundingClientRect().width / fitted;
+      if (!one) return;
+      // seq >= viewport is exactly the seamless condition; +2px absorbs
+      // subpixel rounding so the seam can't peek through at the right edge.
+      const want = Math.max(1, Math.ceil((window.innerWidth + 2) / one));
+      if (want === fitted) return;
+      fitted = want;
+      tickerSeqs.forEach((seq) => { seq.innerHTML = unit.repeat(want); });
+    };
+
+    fitTicker();
+    window.addEventListener('resize', fitTicker, { passive: true });
+  }
+
   /* ── Mobile menu ────────────────────────────── */
   const burger = $('#burger');
   const menu   = $('#mobileMenu');

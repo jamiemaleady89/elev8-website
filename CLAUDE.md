@@ -5,39 +5,37 @@ Plain static HTML/CSS/JS. No framework, no build step.
 
 ---
 
-## ⚠️ Read this first: two copies exist
+## Where the code lives
 
-| Path | What it is | Claude access |
-|---|---|---|
-| `~/Documents/GitHub/elev8-website` | **The real repo** (git, GitHub Desktop) | ❌ blocked by macOS |
-| `~/claude/elev8-work` | Working copy — all edits happen here | ✅ full |
+**`~/Documents/GitHub/elev8-website` — the repo. Edit here.**
 
-macOS gates `~/Documents`, `~/Downloads` and `~/Desktop` behind per-app privacy
-permission, so Claude can create new files there but cannot read or overwrite
-existing ones. Everything is therefore edited in `~/claude/elev8-work` and
-copied across manually:
+Claude has been granted Full Disk Access, so it can read and write the repo
+directly. The old `~/claude/elev8-work` staging copy and its manual `cp -R`
+step are **retired** — don't reintroduce them; two copies silently drifting
+apart caused more trouble than the sandbox ever did.
 
-```bash
-cp -R ~/claude/elev8-work/{index.html,styles.css,script.js,assets} \
-      ~/Documents/GitHub/elev8-website/
-```
+Commit and push from GitHub Desktop as usual.
 
-**This copy step is easy to forget** — if GitHub Desktop shows no changes,
-this is why. Commit/push from GitHub Desktop after copying.
+If Claude ever reports `Operation not permitted` on `~/Documents`, the macOS
+privacy grant has been revoked. It cannot re-request it — macOS only prompts
+on first access and stays silent after a revocation. Re-add the app manually:
+System Settings → Privacy & Security → Full Disk Access → `+` →
+`/Applications/Claude.app`, then restart Claude. To restore the normal prompt
+instead, run `tccutil reset SystemPolicyDocumentsFolder com.anthropic.claudefordesktop`.
 
-**To remove the split entirely:** System Settings → Privacy & Security →
-Files and Folders (or Full Disk Access) → enable for Claude. Then work
-directly in the repo and delete `~/claude/elev8-work`.
+Two things in the repo that aren't in any staging copy, so don't delete them
+as strays: `source/` (4K and OG logo masters) and `serve.py`, whose repo
+version is the good one — fuller headers and logging than older copies.
 
-Note: the repo still contains `assets/amenities/recovery.jpg`, an old
-AI-generated image replaced by a real photo. `cp -R` won't delete it.
+Note: `assets/amenities/recovery.jpg` is an old AI-generated image replaced
+by a real photo. Still unused, still present.
 
 ---
 
 ## Running it
 
 ```bash
-python3 ~/claude/elev8-work/serve.py 4190     # working copy
+python3 ~/Documents/GitHub/elev8-website/serve.py 4190
 ```
 
 `serve.py` sends `Cache-Control: no-store`. Plain `python -m http.server`
@@ -75,7 +73,26 @@ progress → pricing → social → contact → footer.
   stagger would push card six off screen. Below 620px of viewport *height*
   (landscape phones) it falls back to a plain list; `script.js` detects this
   by reading `position` and clears `--cover` itself, so no JS change is
-  needed if the breakpoints move.
+  needed if the breakpoints move. The pinned tops also add `--banner-h` —
+  see the ticker below.
+- **The `.ticker` banner** ("Phase One Sign-Up Coming Soon!") lives *inside*
+  `<header class="nav">`, not as its own fixed element. The nav's height
+  changes 86px → 74px as it sticks, so anything separately fixed underneath
+  would need its `top` re-synced on every scroll. As a nav child it just
+  rides along.
+  - `--banner-h` (34px, 32px under 860px) is the single source of truth.
+    Hero padding, `scroll-padding-top` and the sticky card offsets all
+    `calc()` off it. **Set it to `0px` to retire the banner** — every
+    offset collapses back automatically.
+  - The loop slides the track by exactly `-50%`, which is only seamless
+    while **one `.ticker__seq` is at least as wide as the viewport**. The
+    markup ships 3 repeats (~794px, fine for a phone); `script.js` measures
+    and repeats the sequence until it spans the viewport, re-running on
+    resize. Without that, wide screens flash a gap at the right edge each
+    cycle. If you edit the ticker text, keep the two `.ticker__seq` blocks
+    identical or the loop will jump.
+  - Known rough edge: on desktop it competes with the `.marquee` under the
+    hero — two horizontal scrollers visible at once, both sliding left.
 - **The oversized `8`** in the hero wordmark needs `line-height:.55` plus
   `padding-top` on `.hero__title`, or it overlaps the badge above it.
 - Verify layout by measuring in the browser, not by eye — the preview pane

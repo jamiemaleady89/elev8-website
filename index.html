@@ -51,6 +51,25 @@
       </button>
     </div>
   </div>
+
+  <!-- Mobile-only scrolling banner. Lives INSIDE .nav so it rides the
+       fixed bar — the nav's height changes as it sticks, so a separately
+       fixed banner would need its top re-synced on scroll. Second copy of
+       the sequence is the loop's other half; only the first is read out. -->
+  <div class="ticker">
+    <div class="ticker__track">
+      <div class="ticker__seq">
+        <span>Phase One Sign-Up Coming Soon!</span><i>✦</i>
+        <span>Phase One Sign-Up Coming Soon!</span><i>✦</i>
+        <span>Phase One Sign-Up Coming Soon!</span><i>✦</i>
+      </div>
+      <div class="ticker__seq" aria-hidden="true">
+        <span>Phase One Sign-Up Coming Soon!</span><i>✦</i>
+        <span>Phase One Sign-Up Coming Soon!</span><i>✦</i>
+        <span>Phase One Sign-Up Coming Soon!</span><i>✦</i>
+      </div>
+    </div>
+  </div>
 </header>
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
