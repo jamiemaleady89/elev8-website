@@ -119,9 +119,21 @@ progress → pricing → social → contact → footer.
 | Outdoor sauna + plunge pool | €10 per session, members only |
 
 ### Launch offer
-- **Phase 1** — first 50 members: 10% off first 3 months + no sign-on fee
+- **Phase 1** — first 50 members: 10% off via passcode + no sign-on fee
 - **Phase 2** — members 51–100: no sign-on fee
 - Phase 1 sign-up opens **Sunday**
+
+#### Discount passcode — `ELEV8`
+The 10% is delivered by a passcode, **not** as a blanket "10% off your first
+3 months". Wording matters here and is easy to get wrong:
+- **One use only**, per member.
+- Spends against **either** a 3-month sign-up **or** the first month of a
+  monthly plan — **one or the other, not both**.
+- It is **not** 10% off three months of a monthly plan.
+- The **€25 admin fee waiver is separate** and unchanged — first 100 members.
+- Displayed in `.passcode`, directly above the outbound button in `#signup`,
+  so it is read before anyone leaves for the portal. Also referenced in the
+  Phase 1 tier and the contact footnote — change all three together.
 - Signup CTAs scroll to `#signup` at the end of pricing; that block holds the
   only outbound link:
   `https://secure.ashbournemanagement.co.uk/signup/membership?ownerGroup=GRIEL5`

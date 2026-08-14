@@ -1051,6 +1051,38 @@ input{font:inherit}
 }
 .signup .btn{min-width:min(320px,100%)}
 .signup__ext{font-size:1.1em;line-height:1}
+
+/* ── One-time passcode, directly above the outbound signup button ── */
+.passcode{
+  max-width:min(440px,100%);
+  margin:0 auto clamp(20px,3vw,26px);
+  padding:clamp(16px,2.4vw,20px) clamp(16px,3vw,24px);
+  /* Dashed edge reads as "coupon" and keeps it distinct from the solid
+     panels around it without introducing another brand colour. */
+  border:1px dashed rgba(255,255,255,.38);
+  background:rgba(0,0,0,.32);
+}
+.passcode__label{
+  font-family:var(--cond);
+  font-size:.72rem;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--metal-lt);
+  margin-bottom:6px;
+}
+.passcode__code{
+  font-family:var(--display);
+  font-size:clamp(2.1rem,7vw,2.9rem);
+  line-height:1;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--white);
+  /* Trailing letter-spacing would otherwise push the code off-centre. */
+  text-indent:.16em;
+  margin-bottom:12px;
+}
+.passcode__note{
+  font-size:.86rem;line-height:1.5;
+  color:var(--metal-lt);
+}
+.passcode__note strong{color:var(--white);font-weight:600}
 .signup__fine{
   margin-top:16px;
   font-size:.84rem;color:var(--metal);
