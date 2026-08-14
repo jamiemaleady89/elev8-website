@@ -50,7 +50,18 @@ body{
   line-height:1.65;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
+
+  /* Keeps the ticker track and the off-screen skip-link from causing
+     sideways scroll. It MUST be `clip`, not `hidden`: `overflow-x:hidden`
+     forces the used `overflow-y` to `auto`, which turns <body> into a
+     scroll container — and a scroll-container ancestor silently kills
+     `position:sticky` in Safari, so the pricing cards stop stacking on
+     iPhone while still working in Chrome. `clip` suppresses the same
+     overflow without creating a scroll container.
+     The `hidden` line below is the fallback for pre-16 Safari, which
+     doesn't understand `clip`. Don't collapse these two into one. */
   overflow-x:hidden;
+  overflow-x:clip;
 }
 
 /* subtle film grain over the whole page */
