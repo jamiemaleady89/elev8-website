@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELEV8 — sticky diagnostic</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:#0A0A0A;color:#eee;
+    font:15px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    padding:20px 16px 60px;
+    /* Deliberately NOT overflow-x:hidden — that is the bug this page checks for. */
+  }
+  h1{font-size:19px;color:#E50914;margin-bottom:4px}
+  p.sub{color:#8A8A8E;font-size:13px;margin-bottom:18px}
+  table{width:100%;border-collapse:collapse;margin-bottom:22px}
+  td{padding:7px 6px;border-bottom:1px solid rgba(255,255,255,.12);vertical-align:top}
+  td:first-child{color:#8A8A8E;width:52%}
+  td:last-child{font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+  .ok{color:#38d17a}.bad{color:#ff4d55}
+  .verdict{
+    padding:16px;border-radius:10px;margin-bottom:22px;
+    font-size:16px;font-weight:700;text-align:center;line-height:1.4;
+  }
+  .verdict.pass{background:rgba(56,209,122,.15);border:1px solid #38d17a;color:#38d17a}
+  .verdict.fail{background:rgba(255,77,85,.15);border:1px solid #ff4d55;color:#ff4d55}
+  h2{font-size:15px;margin:26px 0 10px;color:#fff}
+  /* ── live sticky test: does position:sticky work here at all? ── */
+  .demo{border:1px solid rgba(255,255,255,.2);border-radius:10px;overflow:hidden}
+  .demo__inner{display:flex;flex-direction:column;gap:70px;padding:0 12px 300px}
+  .card{
+    position:-webkit-sticky;position:sticky;
+    background:linear-gradient(180deg,#34343B,#26262C);
+    border-top:3px solid #E50914;padding:22px 16px;height:190px;
+  }
+  .card:nth-child(1){top:10px;z-index:1}
+  .card:nth-child(2){top:22px;z-index:2}
+  .card:nth-child(3){top:34px;z-index:3}
+  .card b{font-size:17px;display:block;margin-bottom:6px}
+  .card span{color:#8A8A8E;font-size:13px}
+  .hint{color:#8A8A8E;font-size:13px;margin-bottom:10px}
+  #liveTop{margin-top:14px;padding:12px;background:#171717;border-radius:8px;font-size:14px}
+</style>
+</head>
+<body>
+
+<h1>ELEV8 sticky diagnostic</h1>
+<p class="sub">Open this on the phone that isn't stacking, then send back a screenshot.</p>
+
+<div id="verdict" class="verdict">checking…</div>
+
+<h2>What your phone reports</h2>
+<table id="facts"></table>
+
+<h2>Live sticky test</h2>
+<p class="hint">Scroll slowly. If <b>position:sticky</b> works, these three cards
+should pin near the top and stack over each other. If they just scroll away
+normally, sticky is broken on this browser.</p>
+
+<div class="demo">
+  <div class="demo__inner">
+    <div class="card"><b>Card 01</b><span>should pin at 10px</span></div>
+    <div class="card"><b>Card 02</b><span>should pin at 22px, over card 01</span></div>
+    <div class="card"><b>Card 03</b><span>should pin at 34px, over card 02</span></div>
+  </div>
+</div>
+
+<div id="liveTop">Card 01 distance from top of screen: <b id="topVal">—</b></div>
+
+<script>
+(function(){
+  var GUARD = '(max-width:900px) and (max-height:480px)';
+  var OLD   = '(max-width:900px) and (max-height:660px)';
+
+  function row(label, value, cls){
+    return '<tr><td>' + label + '</td><td' +
+           (cls ? ' class="' + cls + '"' : '') + '>' + value + '</td></tr>';
+  }
+
+  function render(){
+  var guardHits = matchMedia(GUARD).matches;
+  var oldHits   = matchMedia(OLD).matches;
+  var bodyCS    = getComputedStyle(document.body);
+  var scrollCon = bodyCS.overflowY === 'auto' || bodyCS.overflowY === 'scroll';
+  var stickySupported =
+    CSS.supports('position','sticky') || CSS.supports('position','-webkit-sticky');
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var html = '';
+  html += row('viewport (CSS px)', innerWidth + ' x ' + innerHeight);
+  html += row('screen', screen.width + ' x ' + screen.height);
+  html += row('device pixel ratio', devicePixelRatio);
+  html += row('position:sticky supported', stickySupported ? 'yes' : 'NO',
+              stickySupported ? 'ok' : 'bad');
+  html += row('overflow:clip supported', CSS.supports('overflow','clip') ? 'yes' : 'no');
+  html += row('new guard (&le;480px) hits', guardHits ? 'YES — stacking OFF' : 'no — stacking ON',
+              guardHits ? 'bad' : 'ok');
+  html += row('old guard (&le;660px) would hit', oldHits ? 'yes (this was the bug)' : 'no',
+              oldHits ? 'bad' : 'ok');
+  html += row('body is a scroll container', scrollCon ? 'YES — breaks sticky' : 'no',
+              scrollCon ? 'bad' : 'ok');
+  html += row('prefers-reduced-motion', reduced ? 'ON' : 'off');
+  html += row('browser', navigator.userAgent.slice(0, 90));
+  document.getElementById('facts').innerHTML = html;
+
+  var v = document.getElementById('verdict');
+  if (!stickySupported) {
+    v.className = 'verdict fail';
+    v.textContent = 'This browser does not support position:sticky at all.';
+  } else if (guardHits) {
+    v.className = 'verdict fail';
+    v.textContent = 'Viewport is ' + innerWidth + 'x' + innerHeight +
+      ' — short enough to trip the landscape fallback, so stacking is off. Try portrait.';
+  } else {
+    v.className = 'verdict pass';
+    v.textContent = 'Nothing here should stop stacking. Scroll the live test below ' +
+      'to confirm sticky actually works on this browser.';
+  }
+  }
+
+  render();
+  // iOS changes the reported height as Safari's toolbars collapse on scroll,
+  // so re-read rather than trusting the value captured at load.
+  addEventListener('resize', render, {passive:true});
+  addEventListener('orientationchange', render);
+
+  // Live read-out: if sticky works, this value stops falling and holds at 10.
+  var card = document.querySelector('.card');
+  var out  = document.getElementById('topVal');
+  var tick = 0;
+  addEventListener('scroll', function(){
+    if (tick) return;
+    tick = requestAnimationFrame(function(){
+      tick = 0;
+      out.textContent = Math.round(card.getBoundingClientRect().top) + 'px';
+    });
+  }, {passive:true});
+})();
+</script>
+
+</body>
+</html>
