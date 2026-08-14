@@ -1007,7 +1007,21 @@ input{font:inherit}
   .pkg__inner{grid-template-columns:auto 1fr;row-gap:22px}
   .pkg__buy{grid-column:1 / -1;text-align:left;min-width:0}
   .pkg__price{justify-content:flex-start}
-  /* sticky stacking needs viewport headroom; below this it reads better as a list */
+
+  /* Phone stacking. Cards are much taller here (~370–490px vs ~150px on
+     desktop) and the fixed nav already owns the top 75px, so the desktop
+     96px + 18px-per-card offsets would push the sixth card off screen.
+     A tighter base and step keep all six pinned tops visible with the
+     tallest card still fully in frame. */
+  .pkg{top:calc(82px + var(--i) * 9px)}
+  .stack{gap:clamp(60px,10vh,110px)}
+  .stack__hint{font-size:.7rem;letter-spacing:.16em}
+}
+
+/* Not enough vertical room to stack — landscape phones, short windows.
+   Six pinned cards need roughly 620px; below that it reads better as the
+   plain list this breakpoint used to always fall back to. */
+@media (max-width:900px) and (max-height:620px){
   .pkg{position:static}
   .stack{padding-bottom:0}
   .stack__hint{display:none}
