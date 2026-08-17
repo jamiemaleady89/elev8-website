@@ -479,7 +479,12 @@ input{font:inherit}
      keeping the glow bright is what lets the type read as lit rather than
      just dark, while the letterform itself stops glaring. */
   color:var(--red-deep);
-  text-shadow:0 0 46px rgba(229,9,20,.42);
+  /* Radius MUST be em, not px. A fixed 46px was tuned against the 110px
+     desktop title (0.42x its height) but the mobile title is only 43px, so
+     the same halo came out bigger than the letters themselves — 1.06x —
+     and bloomed into the glare this was meant to avoid. In em it holds the
+     same 0.42x ratio at every size. */
+  text-shadow:0 0 .42em rgba(229,9,20,.42);
 }
 
 /* Oversized 8 in the wordmark. Matching the parent's line-height isn't
