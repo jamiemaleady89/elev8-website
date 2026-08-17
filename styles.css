@@ -8,6 +8,15 @@
   --charcoal-2:#171717;
   --red:#E50914;
   --red-hot:#FF1E27;
+  /* Slightly softened red for the huge hero display type — full --red read
+     as glare at 7rem on a phone, but the first pass overcorrected into
+     something muddy. This sits between the two. Buttons, tags and accents
+     keep --red.
+     Contrast against --black, for reference if this gets tuned again:
+     #E50914 4.13:1 · #D40D16 3.65:1 (here) · #C00A12 3.10:1 ·
+     #B00A12 2.73:1 — below the 3:1 WCAG floor for large text, so that is
+     the point not to cross. */
+  --red-deep:#D40D16;
   --metal:#8A8A8E;
   --hyrox:#FFED00;   /* official HYROX yellow */
   --metal-lt:#B0B0B0;
@@ -169,6 +178,23 @@ input{font:inherit}
   box-shadow:0 10px 34px -8px rgba(229,9,20,.75);
 }
 .btn--red:active{transform:translateY(0) scale(.985)}
+
+/* White fill, red label — used only by the three "Founding Members Sign Up"
+   buttons (nav, mobile menu, hero). The outbound "Sign Up Now" in #signup
+   and the contact buttons deliberately stay --red, so the one button that
+   actually leaves the site is still the loudest thing on the page. */
+.btn--white{
+  background:#fff;
+  color:var(--red);
+  box-shadow:0 0 0 rgba(255,255,255,0);
+}
+.btn--white:hover{
+  background:#fff;
+  color:var(--red-hot);
+  transform:translateY(-2px);
+  box-shadow:0 10px 34px -10px rgba(255,255,255,.5);
+}
+.btn--white:active{transform:translateY(0) scale(.985)}
 
 .btn--ghost{
   border-color:var(--hair-2);
@@ -437,7 +463,10 @@ input{font:inherit}
   line-height:.92;
   /* Headroom for the oversized 8, which overshoots the cap line. */
   padding-top:.14em;
-  letter-spacing:-.015em;
+  /* Anton is already condensed and drawn to be set tight; the old -.015em
+     on top of that pushed neighbouring letters into each other and read as
+     uneven rather than tight. Its own metrics are the right spacing here. */
+  letter-spacing:normal;
   text-transform:uppercase;
   color:var(--white);
   margin-bottom:clamp(14px,2.6vh,26px);
@@ -445,10 +474,12 @@ input{font:inherit}
 .hero__title .line{display:block}
 .hero__title em{
   font-style:normal;
-  color:var(--red);
-  /* Soft halo, not a bloom — the brighter hero loop behind it was making the
-     old .55 alpha read as glare on a real display. */
-  text-shadow:0 0 50px rgba(229,9,20,.3);
+  /* Deeper red letterform, but the halo stays near full strength and uses
+     the BRIGHTER --red. Dimming both at once killed the presence entirely;
+     keeping the glow bright is what lets the type read as lit rather than
+     just dark, while the letterform itself stops glaring. */
+  color:var(--red-deep);
+  text-shadow:0 0 46px rgba(229,9,20,.42);
 }
 
 /* Oversized 8 in the wordmark. Matching the parent's line-height isn't
@@ -459,6 +490,11 @@ input{font:inherit}
 .hero__title .eight{
   font-size:1.14em;
   line-height:.6;
+  /* The 8 is set larger than the letters either side of it, so it needs its
+     own optical side bearings — at 1.14em it otherwise sits flush against
+     the "v" and swallows the word space after it. Values are in em, so they
+     scale with the 8 rather than with the parent. */
+  margin-inline:.025em;
 }
 
 .hero__sub{
