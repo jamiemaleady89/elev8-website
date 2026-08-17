@@ -853,6 +853,13 @@ input{font:inherit}
   :root{--banner-h:32px}
   .ticker span{font-size:.78rem}
   html{scroll-padding-top:calc(80px + var(--banner-h))}
+
+  /* Phones get a much weaker halo than desktop. This is not a scaling issue
+     — the radius is already in em — it is the panel: a wide-gamut OLED held
+     at arm's length renders this red far more intensely than the sRGB LCD
+     these values were tuned on, and a coloured glow on near-black is where
+     that difference bites hardest. Desktop keeps the fuller glow. */
+  .hero__title em{text-shadow:0 0 .32em rgba(229,9,20,.15)}
 }
 
 @media (max-width:620px){
