@@ -52,6 +52,12 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 html{
+  /* Safari on iOS tints its URL/status bar from the ROOT element's own
+     background-color. Declaring it only on <body> is not enough: the root
+     stays transparent, Safari falls back to sampling the rendered page, and
+     whatever scrolls under the toolbar bleeds through it (a white button was
+     turning the whole strip white). Keep this in sync with body. */
+  background:var(--black);
   scroll-behavior:smooth;
   scroll-padding-top:calc(90px + var(--banner-h) + var(--safe-top));
   -webkit-text-size-adjust:100%;
