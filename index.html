@@ -2,10 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- viewport-fit=cover is what makes env(safe-area-inset-*) report real values.
+     Without it every inset resolves to 0, --safe-top collapses to nothing, and
+     the nav stops painting up through the status-bar strip — page content then
+     scrolls visibly above the fixed header. The stylesheet's safe-area handling
+     is inert until this opt-in is present. -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>ELEV8 Fitness Gym — Coming Soon to Clane, Co. Kildare</title>
 <meta name="description" content="ELEV8 Fitness Gym is opening soon in Clane, Co. Kildare. Premium equipment, spin, step, Zumba and TRYKA/HYROX classes. Open Mon–Fri 6am–9pm, Sat 9am–4pm, Sun 9am–3pm.">
-<meta name="theme-color" content="#0A0A0A">
+<!-- Tints the Safari/Chrome toolbar strip. Pure black so the strip matches the
+     black band the nav paints behind the status bar. -->
+<meta name="theme-color" content="#000000">
+<!-- Home-screen (standalone) mode only. black-translucent puts the page under
+     the status bar; that is safe here because viewport-fit=cover above gives
+     --safe-top a real value and .nav::before fills that strip with solid black. -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="ELEV8 Fitness Gym — Coming Soon to Clane, Co. Kildare">

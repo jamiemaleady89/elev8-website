@@ -56,15 +56,21 @@ html{
      background-color. Declaring it only on <body> is not enough: the root
      stays transparent, Safari falls back to sampling the rendered page, and
      whatever scrolls under the toolbar bleeds through it (a white button was
-     turning the whole strip white). Keep this in sync with body. */
-  background:var(--black);
+     turning the whole strip white). Keep this in sync with body.
+
+     Pure #000 rather than --black (#0A0A0A): this is the colour the toolbar
+     strip and the overscroll rubber-band area show, and it has to match the
+     theme-color meta and .nav::before exactly or the seam is visible against
+     an OLED black. Page sections keep --black. */
+  background:#000000;
   scroll-behavior:smooth;
   scroll-padding-top:calc(90px + var(--banner-h) + var(--safe-top));
   -webkit-text-size-adjust:100%;
 }
 
 body{
-  background:var(--black);
+  /* Matches html — see the note there. Sections paint their own --black. */
+  background:#000000;
   color:var(--body);
   font-family:var(--sans);
   font-size:16px;
@@ -223,13 +229,29 @@ input{font:inherit}
 
 /* ═══════════════ NAV ═══════════════ */
 .nav{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
+  position:fixed;top:0;left:0;right:0;z-index:9999;
   transition:background-color .4s var(--ease),backdrop-filter .4s,border-color .4s,padding .4s var(--ease);
   border-bottom:1px solid transparent;
   /* Top padding carries the safe-area inset so the bar paints up through
      the status-bar strip. Without it iOS leaves that strip uncovered and
      page content scrolls visibly above the fixed nav. */
   padding-top:calc(6px + var(--safe-top));
+}
+
+/* Solid black band filling the status-bar strip, at every scroll position and
+   independent of the nav's own background. The nav itself is deliberately
+   transparent over the hero on desktop and frosted once stuck, so neither
+   state can be relied on to keep that strip opaque — this pseudo-element is
+   what guarantees nothing is ever seen scrolling above the header.
+   Height is exactly the inset, so it collapses to nothing on devices without
+   one and costs desktop nothing. */
+.nav::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:var(--safe-top);
+  background:#000000;
+  pointer-events:none;
 }
 .nav.is-stuck{
   background:rgba(10,10,10,.82);
