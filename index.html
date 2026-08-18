@@ -2,7 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- No viewport-fit=cover. With it the layout viewport becomes the whole
+     screen, so the page draws UNDER Safari's translucent top bar and page
+     content is visible behind it — the "gap above the header" on iPhone.
+     Without it iOS insets the viewport and backs its chrome with
+     theme-color (#0A0A0A) instead. Do not re-add it. -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ELEV8 Fitness Gym — Coming Soon to Clane, Co. Kildare</title>
 <meta name="description" content="ELEV8 Fitness Gym is opening soon in Clane, Co. Kildare. Premium equipment, spin, step, Zumba and TRYKA/HYROX classes. Open Mon–Fri 6am–9pm, Sat 9am–4pm, Sun 9am–3pm.">
 <meta name="theme-color" content="#0A0A0A">
