@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>ELEV8 — sticky diagnostic</title>
 <style>
+  :root{--safe-top:env(safe-area-inset-top,0px)}
   *{box-sizing:border-box;margin:0;padding:0}
   body{
     background:#0A0A0A;color:#eee;
@@ -44,6 +45,51 @@
 </style>
 </head>
 <body>
+
+
+<!-- ── live header-gap readout ─────────────────────────────────────── -->
+<style>
+  #gapProbe{
+    position:fixed; left:0; right:0; top:0; z-index:99999;
+    background:#000; color:#0f0;
+    font:11px/1.35 ui-monospace,Menlo,monospace;
+    padding:calc(env(safe-area-inset-top,0px) + 4px) 8px 4px;
+    border-bottom:1px solid #0f0; white-space:pre;
+  }
+  #gapSpacer{height:190px}
+  #gapProbe b{color:#ff4d55}
+</style>
+<div id="gapProbe">measuring…</div>
+<div id="gapSpacer"></div>
+<script>
+(function(){
+  var el=document.getElementById('gapProbe');
+  function upd(){
+    var vv=window.visualViewport;
+    var cs=getComputedStyle(document.documentElement);
+    var safe=cs.getPropertyValue('--safe-top').trim()||'(unset)';
+    var probeTop=el.getBoundingClientRect().top;
+    var lines=[
+      'SCROLL Y      ' + Math.round(window.scrollY),
+      'env safe-top  ' + safe,
+      'innerHeight   ' + window.innerHeight,
+      'vv.height     ' + (vv?Math.round(vv.height):'n/a'),
+      'vv.offsetTop  ' + (vv?Math.round(vv.offsetTop):'n/a'),
+      'vv.pageTop    ' + (vv?Math.round(vv.pageTop):'n/a'),
+      'vv.scale      ' + (vv?vv.scale:'n/a'),
+      'fixed el top  ' + Math.round(probeTop) + (Math.abs(probeTop)>1?'  <-- FIXED BAR IS OFF-SCREEN':'  ok')
+    ];
+    el.textContent=lines.join('\n');
+  }
+  upd();
+  addEventListener('scroll',upd,{passive:true});
+  addEventListener('resize',upd,{passive:true});
+  if(window.visualViewport){
+    visualViewport.addEventListener('resize',upd);
+    visualViewport.addEventListener('scroll',upd);
+  }
+})();
+</script>
 
 <h1>ELEV8 sticky diagnostic</h1>
 <p class="sub">Open this on the phone that isn't stacking, then send back a screenshot.</p>

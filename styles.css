@@ -46,6 +46,13 @@
      viewport meta opts in with viewport-fit=cover. Everything anchored to
      the top of the viewport adds this. */
   --safe-top:env(safe-area-inset-top,0px);
+
+  /* The nav box starts this far ABOVE the viewport top, with padding adding
+     the same amount back so its contents do not move. Its opaque background
+     therefore keeps painting into any strip iOS exposes above the layout
+     viewport while Safari collapses its toolbars — which is where page
+     content was showing through. Covers the symptom whatever the cause. */
+  --nav-overscan:160px;
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -214,13 +221,13 @@ input{font:inherit}
 
 /* ═══════════════ NAV ═══════════════ */
 .nav{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
+  position:fixed;top:calc(-1 * var(--nav-overscan));left:0;right:0;z-index:1000;
   transition:background-color .4s var(--ease),backdrop-filter .4s,border-color .4s,padding .4s var(--ease);
   border-bottom:1px solid transparent;
   /* Top padding carries the safe-area inset so the bar paints up through
      the status-bar strip. Without it iOS leaves that strip uncovered and
      page content scrolls visibly above the fixed nav. */
-  padding-top:calc(6px + var(--safe-top));
+  padding-top:calc(var(--nav-overscan) + 6px + var(--safe-top));
 }
 .nav.is-stuck{
   background:rgba(10,10,10,.82);
@@ -229,7 +236,7 @@ input{font:inherit}
   border-bottom-color:var(--hair);
   /* Keep the inset when stuck — this is the scrolled state where the gap
      showed. A bare padding-block:0 here would cancel it. */
-  padding-top:var(--safe-top);
+  padding-top:calc(var(--nav-overscan) + var(--safe-top));
   padding-bottom:0;
 }
 .nav__inner{
