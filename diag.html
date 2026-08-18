@@ -49,26 +49,30 @@
 
 <!-- ── live header-gap readout ─────────────────────────────────────── -->
 <style>
+  /* IN NORMAL FLOW on purpose. An earlier version was position:fixed, which
+     iOS hid behind Safari's URL bar — the very bug being measured. */
   #gapProbe{
-    position:fixed; left:0; right:0; top:0; z-index:99999;
     background:#000; color:#0f0;
-    font:11px/1.35 ui-monospace,Menlo,monospace;
-    padding:calc(env(safe-area-inset-top,0px) + 4px) 8px 4px;
-    border-bottom:1px solid #0f0; white-space:pre;
+    font:13px/1.5 ui-monospace,Menlo,monospace;
+    padding:12px 10px; margin-bottom:16px;
+    border:2px solid #0f0; white-space:pre;
   }
-  #gapSpacer{height:190px}
-  #gapProbe b{color:#ff4d55}
+  #gapProbe .hdr{color:#fff;font-weight:700;display:block;margin-bottom:8px}
+  /* Invisible fixed reference: its rect.top reveals how far iOS displaces
+     fixed elements from the top of the visible area. */
+  #fixedRef{position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;pointer-events:none}
 </style>
+<div id="fixedRef"></div>
 <div id="gapProbe">measuring…</div>
-<div id="gapSpacer"></div>
 <script>
 (function(){
   var el=document.getElementById('gapProbe');
+  var ref=document.getElementById('fixedRef');
   function upd(){
     var vv=window.visualViewport;
     var cs=getComputedStyle(document.documentElement);
     var safe=cs.getPropertyValue('--safe-top').trim()||'(unset)';
-    var probeTop=el.getBoundingClientRect().top;
+    var probeTop=ref.getBoundingClientRect().top;
     var lines=[
       'SCROLL Y      ' + Math.round(window.scrollY),
       'env safe-top  ' + safe,
@@ -79,7 +83,7 @@
       'vv.scale      ' + (vv?vv.scale:'n/a'),
       'fixed el top  ' + Math.round(probeTop) + (Math.abs(probeTop)>1?'  <-- FIXED BAR IS OFF-SCREEN':'  ok')
     ];
-    el.textContent=lines.join('\n');
+    el.innerHTML='<span class="hdr">SCREENSHOT THIS BLOCK</span>'+lines.join('\n');
   }
   upd();
   addEventListener('scroll',upd,{passive:true});
