@@ -111,16 +111,21 @@ progress → pricing → social → contact → footer.
 ### Pricing (6 stacking cards)
 | | |
 |---|---|
-| Gym Only | €70/mo (+ €25 one-off admin fee) |
+| Gym Only | €70/mo |
 | Small Group PT + gym | €159/mo, includes 10 PT sessions a month |
 | Upfront standard | 3mo €200 · 6mo €395 · 12mo €770 |
-| Student (no admin fee) | €55/mo · €155 · €300 · €575 |
+| Student | €55/mo · €155 · €300 · €575 |
 | Class packs | Spin 8 €80 · Spin 12 €110 · Step 8 €80 · Zumba 8 €80 |
 | Outdoor sauna + plunge pool | €10 per session, members only |
 
+**There is no sign-up / admin / joining fee.** The €25 one-off admin fee was
+removed from the site on 2026-08-18, along with the Phase 2 tier (members
+51–100), whose entire offer had been the waiver of that fee. Do not
+reintroduce fee copy without checking the Ashbourne portal actually charges
+one — the site does not process payment, so the two can silently disagree.
+
 ### Launch offer
-- **Phase 1** — first 50 members: 10% off via passcode + no sign-on fee
-- **Phase 2** — members 51–100: no sign-on fee
+- **Phase 1** — first 50 members: 10% off via passcode
 - Phase 1 sign-up opens **Sunday**
 
 #### Discount passcode — `ELEV8`
@@ -130,7 +135,6 @@ The 10% is delivered by a passcode, **not** as a blanket "10% off your first
 - Spends against **either** a 3-month sign-up **or** the first month of a
   monthly plan — **one or the other, not both**.
 - It is **not** 10% off three months of a monthly plan.
-- The **€25 admin fee waiver is separate** and unchanged — first 100 members.
 - Displayed in `.passcode`, directly above the outbound button in `#signup`,
   so it is read before anyone leaves for the portal. Also referenced in the
   Phase 1 tier and the contact footnote — change all three together.

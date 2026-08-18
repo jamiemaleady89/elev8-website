@@ -1448,8 +1448,8 @@ input{font:inherit}
   font-family:var(--cond);font-size:.76rem;font-weight:700;
   letter-spacing:.22em;text-transform:uppercase;color:var(--metal-lt);
 }
-/* The whole offer line runs at one display size — "no sign-on fee" is as
-   loud as the "€0" it sits beside, rather than dropping to a caption. */
+/* The whole offer line runs at one display size, so the discount and the code
+   it applies to read as equally loud rather than one dropping to a caption. */
 .tier__off{
   display:block;
   font-family:var(--display);
