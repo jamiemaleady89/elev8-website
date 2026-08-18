@@ -44,8 +44,24 @@
 
   /* Status-bar strip on notched phones. 0 everywhere else, and 0 unless the
      viewport meta opts in with viewport-fit=cover. Everything anchored to
-     the top of the viewport adds this. */
+     the top of the viewport adds this.
+
+     NOTE: this is 0 in ordinary mobile Safari/Chrome — the browser toolbar
+     already occupies the status bar there, so the page's own top inset is
+     nothing. It only becomes non-zero in standalone (home-screen) mode.
+     Anything that must be black in a normal browser tab cannot rely on it;
+     use --overscan below. */
   --safe-top:env(safe-area-inset-top,0px);
+
+  /* How far the nav paints ABOVE the viewport top. iOS Safari's toolbar is
+     translucent and samples what is underneath it, but position:fixed
+     anchors to the visual viewport, whose top edge is BELOW that toolbar —
+     so the strip behind it shows scrolling page content, not the nav. This
+     overscan is the only thing that puts solid black up there. It is also
+     what covers the gap during toolbar collapse and rubber-band overscroll,
+     when the visual viewport briefly extends past the layout viewport.
+     Generous on purpose: it is never visible on screen, only in that strip. */
+  --overscan:160px;
 
 }
 
@@ -238,18 +254,25 @@ input{font:inherit}
   padding-top:calc(6px + var(--safe-top));
 }
 
-/* Solid black band filling the status-bar strip, at every scroll position and
-   independent of the nav's own background. The nav itself is deliberately
-   transparent over the hero on desktop and frosted once stuck, so neither
-   state can be relied on to keep that strip opaque — this pseudo-element is
-   what guarantees nothing is ever seen scrolling above the header.
-   Height is exactly the inset, so it collapses to nothing on devices without
-   one and costs desktop nothing. */
+/* Solid black slab covering the status-bar strip AND the whole region above
+   the viewport top, at every scroll position and independent of the nav's own
+   background. The nav is deliberately transparent over the hero on desktop and
+   frosted once stuck, so neither state can be relied on to keep that strip
+   opaque — this pseudo-element is what guarantees nothing is ever seen
+   scrolling above the header.
+
+   It starts --overscan ABOVE the nav and ends at the nav's content edge. The
+   upward half is the part that matters in a normal mobile browser tab, where
+   --safe-top is 0: it is what Safari's translucent toolbar samples instead of
+   sampling the scrolling page. Nothing may clip it — see the overflow note on
+   <body>; a clip box starting at y=0 silently amputates the upward half and
+   the bleed comes straight back. */
 .nav::before{
   content:'';
   position:absolute;
-  top:0;left:0;right:0;
-  height:var(--safe-top);
+  top:calc(-1 * var(--overscan));
+  left:0;right:0;
+  height:calc(var(--overscan) + var(--safe-top));
   background:#000000;
   pointer-events:none;
 }
@@ -901,13 +924,17 @@ input{font:inherit}
      scroll and frosted after it, so iOS had translucent page content sitting
      at the very top of the viewport and blurred it into the toolbar strip.
      Sites that don't show this (BBC, etc.) all present a solid colour there.
-     Do not put a transparent or rgba background back on mobile. */
+     Do not put a transparent or rgba background back on mobile.
+
+     Pure #000, not --black (#0A0A0A): it has to match the ::before slab and
+     the theme-color meta exactly, or a faint seam shows where the two meet on
+     an OLED panel. */
   .nav{
-    background:var(--black);
+    background:#000000;
     backdrop-filter:none;
     -webkit-backdrop-filter:none;
   }
-  .nav.is-stuck{background:var(--black);backdrop-filter:none;-webkit-backdrop-filter:none}
+  .nav.is-stuck{background:#000000;backdrop-filter:none;-webkit-backdrop-filter:none}
 
   /* Phones get a much weaker halo than desktop. This is not a scaling issue
      — the radius is already in em — it is the panel: a wide-gamut OLED held
