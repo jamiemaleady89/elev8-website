@@ -78,15 +78,21 @@ html{
      strip and the overscroll rubber-band area show, and it has to match the
      theme-color meta and .nav::before exactly or the seam is visible against
      an OLED black. Page sections keep --black. */
-  background:#000000;
+  background:#000000 !important;
   scroll-behavior:smooth;
   scroll-padding-top:calc(90px + var(--banner-h) + var(--safe-top));
   -webkit-text-size-adjust:100%;
+
+  /* Kills the rubber-band overscroll past the top of the document, which is
+     one of the ways page pixels get dragged up into the toolbar strip.
+     iOS 16+; older versions ignore it and fall back to the ::before slab. */
+  overscroll-behavior-y:none;
 }
 
 body{
   /* Matches html — see the note there. Sections paint their own --black. */
-  background:#000000;
+  background:#000000 !important;
+  overscroll-behavior-y:none;
   color:var(--body);
   font-family:var(--sans);
   font-size:16px;
@@ -245,7 +251,7 @@ input{font:inherit}
 
 /* ═══════════════ NAV ═══════════════ */
 .nav{
-  position:fixed;top:0;left:0;right:0;z-index:9999;
+  position:fixed;top:0;left:0;right:0;width:100%;z-index:99999;
   transition:background-color .4s var(--ease),backdrop-filter .4s,border-color .4s,padding .4s var(--ease);
   border-bottom:1px solid transparent;
   /* Top padding carries the safe-area inset so the bar paints up through
@@ -273,7 +279,7 @@ input{font:inherit}
   top:calc(-1 * var(--overscan));
   left:0;right:0;
   height:calc(var(--overscan) + var(--safe-top));
-  background:#000000;
+  background:#000000 !important;
   pointer-events:none;
 }
 .nav.is-stuck{
@@ -930,11 +936,11 @@ input{font:inherit}
      the theme-color meta exactly, or a faint seam shows where the two meet on
      an OLED panel. */
   .nav{
-    background:#000000;
+    background:#000000 !important;
     backdrop-filter:none;
     -webkit-backdrop-filter:none;
   }
-  .nav.is-stuck{background:#000000;backdrop-filter:none;-webkit-backdrop-filter:none}
+  .nav.is-stuck{background:#000000 !important;backdrop-filter:none;-webkit-backdrop-filter:none}
 
   /* Phones get a much weaker halo than desktop. This is not a scaling issue
      — the radius is already in em — it is the panel: a wide-gamut OLED held

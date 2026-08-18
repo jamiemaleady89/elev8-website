@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>ELEV8 — header bleed diagnostic</title>
+<style>
+  :root{--safe-top:env(safe-area-inset-top,0px);--overscan:160px}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  html{background:#000 !important;overscroll-behavior-y:none}
+  body{
+    background:#000 !important;color:#eee;
+    font:14px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    overscroll-behavior-y:none;
+  }
+
+  /* ── Exact replica of the live site's header stack ── */
+  .nav{
+    position:fixed;top:0;left:0;right:0;width:100%;z-index:99999;
+    background:#000 !important;
+    padding-top:calc(6px + var(--safe-top));
+  }
+  .nav::before{
+    content:'';position:absolute;
+    top:calc(-1 * var(--overscan));left:0;right:0;
+    height:calc(var(--overscan) + var(--safe-top));
+    background:#000 !important;pointer-events:none;
+  }
+  .nav__inner{display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
+  .brand{font-weight:800;letter-spacing:.06em}
+  .brand em{color:#E50914;font-style:normal}
+  .ticker{height:32px;background:#E50914;display:flex;align-items:center;overflow:hidden}
+  .ticker span{white-space:nowrap;font-size:.74rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding-left:12px}
+
+  /* Loud, unmistakable content — if ANY of this appears above the black
+     header or behind the URL bar, the bleed is real and visible. */
+  main{padding-top:calc(52px + 32px + var(--safe-top))}
+  .stripe{
+    height:64px;display:flex;align-items:center;padding:0 16px;
+    font-weight:800;font-size:18px;letter-spacing:.04em;color:#fff;
+  }
+  .stripe:nth-child(odd){background:#00E5FF;color:#000}
+  .stripe:nth-child(even){background:#FF00A8}
+
+  .panel{position:relative;z-index:1;background:#0A0A0A;padding:16px}
+  h2{font-size:14px;color:#E50914;margin:18px 0 8px;letter-spacing:.08em;text-transform:uppercase}
+  table{width:100%;border-collapse:collapse}
+  td{padding:6px 4px;border-bottom:1px solid rgba(255,255,255,.12);font-size:13px}
+  td:first-child{color:#8A8A8E}
+  td:last-child{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+  .ok{color:#38d17a}.bad{color:#ff4d55}.warn{color:#ffc247}
+  .verdict{padding:14px;border-radius:10px;margin:14px 0;font-weight:700;text-align:center;line-height:1.45}
+  .verdict.pass{background:rgba(56,209,122,.15);border:1px solid #38d17a;color:#38d17a}
+  .verdict.fail{background:rgba(255,77,85,.15);border:1px solid #ff4d55;color:#ff4d55}
+  .hint{color:#8A8A8E;font-size:12px;line-height:1.5;margin-top:8px}
+  .tall{height:180vh;background:linear-gradient(#00E5FF,#FF00A8);display:flex;align-items:flex-start;justify-content:center;padding-top:20px;font-weight:800;color:#000}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav__inner">
+    <span class="brand">ELEV<em>8</em> — DIAGNOSTIC</span>
+    <span id="live" style="font-size:11px;color:#8A8A8E"></span>
+  </div>
+  <div class="ticker"><span>Scroll up and down hard — then read the panel below</span></div>
+</header>
+
+<main>
+  <div class="stripe">01 — bright test stripe</div>
+  <div class="stripe">02 — bright test stripe</div>
+
+  <div class="panel">
+    <div id="verdict" class="verdict">Scroll up and down a few times…</div>
+
+    <h2>Safe area &amp; viewport</h2>
+    <table id="t1"></table>
+
+    <h2>Header pinning (worst values seen while scrolling)</h2>
+    <table id="t2"></table>
+
+    <h2>Feature support</h2>
+    <table id="t3"></table>
+
+    <p class="hint">
+      The stripes are deliberately neon. Scroll down, then flick back up hard to
+      trigger the rubber band. If neon appears above the black bar or smeared
+      behind the URL bar, the bleed is reproducing — note which row below turned red.
+    </p>
+  </div>
+
+  <div class="tall">keep scrolling…</div>
+  <div class="stripe">03 — bright test stripe</div>
+  <div class="stripe">04 — bright test stripe</div>
+</main>
+
+<script>
+(function(){
+  var nav = document.getElementById('nav');
+  var vv  = window.visualViewport;
+
+  // Worst-case trackers — a single bad frame is what causes the visible bleed,
+  // so we keep extremes rather than instantaneous values.
+  var minScroll = 0, maxNavTop = 0, minNavTop = 0, maxVVOffset = 0, minVVOffset = 0;
+  var topLeak = null, samples = 0;
+
+  function px(v){ return Math.round(v * 10) / 10 + 'px'; }
+  function row(label, value, cls){
+    return '<tr><td>' + label + '</td><td class="' + (cls||'') + '">' + value + '</td></tr>';
+  }
+
+  function sample(){
+    samples++;
+    var r  = nav.getBoundingClientRect();
+    var sy = window.scrollY;
+
+    if (sy < minScroll) minScroll = sy;
+    if (r.top > maxNavTop) maxNavTop = r.top;
+    if (r.top < minNavTop) minNavTop = r.top;
+
+    if (vv) {
+      if (vv.offsetTop > maxVVOffset) maxVVOffset = vv.offsetTop;
+      if (vv.offsetTop < minVVOffset) minVVOffset = vv.offsetTop;
+    }
+
+    // What is actually painted on the topmost row of the viewport? If this is
+    // ever anything but the header, page content is reaching the strip.
+    var el = document.elementFromPoint(Math.round(window.innerWidth / 2), 1);
+    if (el && !nav.contains(el) && el !== nav) {
+      topLeak = el.tagName + (el.className ? '.' + el.className : '');
+    }
+
+    document.getElementById('live').textContent = 'y:' + Math.round(sy) + ' top:' + Math.round(r.top);
+  }
+
+  function render(){
+    var cs = getComputedStyle(document.documentElement);
+    var safeTop = cs.getPropertyValue('--safe-top').trim();
+    var navCS = getComputedStyle(nav);
+    var beforeCS = getComputedStyle(nav, '::before');
+
+    document.getElementById('t1').innerHTML =
+      row('env(safe-area-inset-top)', safeTop, safeTop === '0px' ? 'warn' : 'ok') +
+      row('window.innerHeight', px(window.innerHeight)) +
+      row('visualViewport.height', vv ? px(vv.height) : 'n/a') +
+      row('visualViewport.offsetTop now', vv ? px(vv.offsetTop) : 'n/a') +
+      row('visualViewport.scale', vv ? vv.scale : 'n/a') +
+      row('devicePixelRatio', window.devicePixelRatio) +
+      row('standalone (home screen)', navigator.standalone === true ? 'YES' : 'no');
+
+    var pinCls = (maxNavTop > 0.5 || minNavTop < -0.5) ? 'bad' : 'ok';
+    var leakCls = topLeak ? 'bad' : 'ok';
+    document.getElementById('t2').innerHTML =
+      row('header rect.top — max', px(maxNavTop), maxNavTop > 0.5 ? 'bad' : 'ok') +
+      row('header rect.top — min', px(minNavTop), minNavTop < -0.5 ? 'bad' : 'ok') +
+      row('scrollY — most negative', px(minScroll), minScroll < -0.5 ? 'bad' : 'ok') +
+      row('visualViewport.offsetTop — max', vv ? px(maxVVOffset) : 'n/a', maxVVOffset > 0.5 ? 'bad' : 'ok') +
+      row('visualViewport.offsetTop — min', vv ? px(minVVOffset) : 'n/a', minVVOffset < -0.5 ? 'bad' : 'ok') +
+      row('non-header element at y=1', topLeak || 'none', leakCls) +
+      row('samples taken', samples);
+
+    document.getElementById('t3').innerHTML =
+      row('overscroll-behavior supported', CSS.supports('overscroll-behavior-y','none') ? 'yes' : 'NO',
+          CSS.supports('overscroll-behavior-y','none') ? 'ok' : 'bad') +
+      row('env() supported', CSS.supports('padding-top','env(safe-area-inset-top)') ? 'yes' : 'NO',
+          CSS.supports('padding-top','env(safe-area-inset-top)') ? 'ok' : 'bad') +
+      row('header position', navCS.position) +
+      row('header z-index', navCS.zIndex) +
+      row('header background', navCS.backgroundColor) +
+      row('::before top / height', beforeCS.top + ' / ' + beforeCS.height) +
+      row('::before background', beforeCS.backgroundColor) +
+      row('html overscroll-behavior-y', cs.overscrollBehaviorY) +
+      row('UA', navigator.userAgent.slice(0, 48) + '…');
+
+    var v = document.getElementById('verdict');
+    if (samples < 20) {
+      v.className = 'verdict';
+      v.textContent = 'Scroll up and down a few times…';
+    } else if (topLeak || maxNavTop > 0.5 || minNavTop < -0.5) {
+      v.className = 'verdict fail';
+      v.textContent = 'BLEED REPRODUCED — the header is not holding the top of the viewport. See the red rows.';
+    } else {
+      v.className = 'verdict pass';
+      v.textContent = 'Header held the top of the viewport for every sampled frame. If you still SEE a bleed, it is the browser toolbar compositing, not page layout.';
+    }
+  }
+
+  window.addEventListener('scroll', sample, {passive:true});
+  if (vv) { vv.addEventListener('scroll', sample); vv.addEventListener('resize', sample); }
+  setInterval(function(){ sample(); render(); }, 250);
+  sample(); render();
+})();
+</script>
+</body>
+</html>
