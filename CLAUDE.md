@@ -30,6 +30,16 @@ version is the good one — fuller headers and logging than older copies.
 Note: `assets/amenities/recovery.jpg` is an old AI-generated image replaced
 by a real photo. Still unused, still present.
 
+`assets/classes/circuits.jpg` is an Unsplash stock photo (photo ID
+`1554284126-aa88f22d8b74`), cropped to the 900x672 all class images use.
+Unsplash License — free for commercial use, no attribution required. Swap it
+for a real ELEV8 photo once the gym is shooting its own.
+
+That photo is black-and-white, so its card carries an extra `klass--tint`
+class that washes it red via `mix-blend-mode:color` — without it the card
+reads cold beside the four red-lit ones. Drop the class when a real colour
+photo replaces the file.
+
 ---
 
 ## Running it
@@ -115,7 +125,7 @@ progress → pricing → social → contact → footer.
 | Small Group PT + gym | €159/mo, includes 10 PT sessions a month |
 | Upfront standard | 3mo €200 · 6mo €395 · 12mo €770 |
 | Student | €55/mo · €155 · €300 · €575 |
-| Class packs | Spin 8 €80 · Spin 12 €110 · Step 8 €80 · Zumba 8 €80 |
+| Class packs | 8 classes €80 · 12 classes €100 — mix and match, no class-only bookings |
 | Outdoor sauna + plunge pool | €10 per session, members only |
 
 **There is no sign-up / admin / joining fee.** The €25 one-off admin fee was

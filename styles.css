@@ -975,9 +975,14 @@ input{font:inherit}
 }
 
 /* ═══════════════ CLASSES ═══════════════ */
+/* Five cards. Column counts are chosen so the row always fills exactly —
+   5 then 3 then 1 — because any count that leaves a single card stranded on
+   its own row reads as a layout bug rather than a design. The 3-up band
+   carries 3+2, which still balances; 4-up is deliberately skipped since it
+   would orphan the fifth card. */
 .classes{
   display:grid;
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(5,1fr);
   gap:clamp(14px,1.8vw,22px);
 }
 
@@ -1009,6 +1014,26 @@ input{font:inherit}
   filter:brightness(.9) contrast(1.05);
 }
 .klass:hover .klass__media img{transform:scale(1.07);filter:brightness(1.05) contrast(1.05)}
+
+/* Red wash for the Circuit Classes shot. That photo is monochrome, so it
+   read cold next to the other four, which all carry red studio lighting.
+   `mix-blend-mode:color` takes the hue from this layer and the luminance
+   from the photo underneath — a true tint rather than a red film laid over
+   the top, so the blacks stay black instead of turning maroon. Paints under
+   .klass__media::after, which still lays its scrim over everything. */
+.klass--tint .klass__media::before{
+  content:'';
+  position:absolute;inset:0;z-index:1;
+  background:var(--red);
+  mix-blend-mode:color;
+  /* .2 is the ceiling before skin tones go pink rather than red-lit —
+     checked against .14 (too faint to register) and .28 (visibly rosy). */
+  opacity:.2;
+  pointer-events:none;
+  transition:opacity .5s;
+}
+.klass--tint:hover .klass__media::before{opacity:.26}
+
 .klass__media::after{
   content:'';position:absolute;inset:0;
   background:linear-gradient(180deg,transparent 45%,rgba(20,20,22,.86) 100%);
@@ -1026,8 +1051,25 @@ input{font:inherit}
   filter:drop-shadow(0 2px 6px rgba(0,0,0,.85));
 }
 .klass__brand .klass__logo:first-child{height:34px}
-.klass__brand--race .klass__logo{height:15px}
-.klass__brand--race .klass__logo:first-child{height:15px}
+
+/* Two logos plus a separator need ~235px at full size, which stopped fitting
+   when the row went to five columns and the cards narrowed to ~211px — TRYKA
+   was running off the right edge. Pinning the strip to both sides and letting
+   the marks shrink means they fit whatever the card is, instead of being
+   sized for one specific column count. height:auto keeps each SVG's aspect
+   ratio while flex shrinks it by width; max-height stops them growing past
+   the original 15px on wide cards. */
+.klass__brand--race{
+  right:16px;
+  gap:clamp(5px,.9vw,10px);
+}
+.klass__brand--race .klass__logo,
+.klass__brand--race .klass__logo:first-child{
+  height:auto;
+  max-height:15px;
+  min-width:0;
+  flex:0 1 auto;
+}
 .klass__brand-sep{
   width:1px;height:14px;
   background:rgba(255,255,255,.42);
@@ -1231,7 +1273,13 @@ input{font:inherit}
 
 /* classes + pricing stack responsive */
 @media (max-width:1100px){
-  .classes{grid-template-columns:repeat(2,1fr)}
+  .classes{grid-template-columns:repeat(3,1fr)}
+}
+/* Below this a third column squeezes the cards under ~190px, which crushes
+   the title and meta row — go straight to single column rather than to a
+   2-up that would strand the fifth card anyway. */
+@media (max-width:760px){
+  .classes{grid-template-columns:1fr}
 }
 @media (max-width:900px){
   .pkg__inner{grid-template-columns:auto 1fr;row-gap:22px}
