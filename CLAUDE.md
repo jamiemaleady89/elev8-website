@@ -121,7 +121,7 @@ progress → pricing → social → contact → footer.
 ### Pricing (6 stacking cards)
 | | |
 |---|---|
-| Gym Only | €70/mo |
+| Gym Floor Only | €70/mo |
 | Small Group PT + gym | €159/mo, includes 10 PT sessions a month |
 | Upfront standard | 3mo €200 · 6mo €395 · 12mo €770 |
 | Student | €55/mo · €155 · €300 · €575 |
