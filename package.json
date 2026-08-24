@@ -1,0 +1,15 @@
+{
+  "name": "elev8-website",
+  "version": "1.0.0",
+  "description": "ELEV8 Fitness Gym website - Coming Soon to Clane, Co. Kildare",
+  "private": true,
+  "scripts": {
+    "dev": "python3 serve.py"
+  },
+  "keywords": ["fitness", "gym", "clane", "kildare"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
