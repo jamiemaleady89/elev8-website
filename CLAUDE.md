@@ -118,14 +118,15 @@ progress → pricing → social → contact → footer.
 - **Over 18s only**
 - Instagram `@elev8_fitnessgym` · Facebook `elev8fitnessgym`
 
-### Pricing (6 stacking cards)
+### Pricing (7 stacking cards)
 | | |
 |---|---|
 | Gym Floor Only | €70/mo |
+| Gym & Classes | Gym + 8 classes €130/mo · Gym + 12 classes €150/mo |
 | Small Group PT + gym | €159/mo, includes 10 PT sessions a month |
 | Upfront standard | 3mo €200 · 6mo €395 · 12mo €770 |
 | Student | €55/mo · €155 · €300 · €575 |
-| Class packs | 8 classes €80 · 12 classes €100 — mix and match, no class-only bookings |
+| Class packs | 8 classes €80 · 12 classes €100 — mix and match, must be used within the month |
 | Outdoor sauna + plunge pool | €10 per session, members only |
 
 **There is no sign-up / admin / joining fee.** The €25 one-off admin fee was

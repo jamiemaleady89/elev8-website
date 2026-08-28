@@ -1646,6 +1646,30 @@ input{font:inherit}
 }
 .pkg__fine strong{color:var(--white);font-weight:600}
 
+/* Offer strip on the combined Gym & Classes tier. Deliberately the only
+   filled element in the pricing stack — the cards are otherwise flat, so a
+   tinted rule plus the red edge is enough to make this one read as the
+   upsell without inventing a new visual language. Inline-block so it hugs
+   its text on wide cards and wraps naturally on a phone rather than
+   stretching to a full-width slab. */
+.pkg__body p.pkg__banner{
+  /* Sized to its text so the strip hugs the sentence instead of stretching
+     across the card; max-width:100% lets it wrap normally on a phone.
+     The selector must out-specify `.pkg__body p{max-width:46ch}` (0,1,1) or
+     that cap wins and breaks the line early — hence `p.pkg__banner`. */
+  display:block;
+  width:max-content;
+  max-width:100%;
+  margin:2px 0 12px;
+  padding:7px 13px;
+  border-left:2px solid var(--red);
+  background:rgba(229,9,20,.11);
+  font-family:var(--cond);
+  font-size:.82rem;font-weight:600;
+  letter-spacing:.04em;
+  color:var(--white);
+}
+
 .visually-hidden{
   position:absolute;width:1px;height:1px;
   margin:-1px;padding:0;overflow:hidden;
