@@ -1180,7 +1180,10 @@ input{font:inherit}
   text-transform:uppercase;color:var(--white);
   margin-bottom:8px;
 }
-.pkg__plus{color:var(--metal);font-size:.62em}
+/* text-transform:none opts out of the h3's uppercase so the qualifier reads
+   as written — "(over 18s)", not "(OVER 18S)", where the capitalised S looks
+   like part of a code rather than a plural. */
+.pkg__plus{color:var(--metal);font-size:.62em;text-transform:none}
 .pkg__body p{font-size:.92rem;color:var(--metal-lt);max-width:46ch}
 
 .pkg__buy{flex:0 0 auto;text-align:center;min-width:170px}
