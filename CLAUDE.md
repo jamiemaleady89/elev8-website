@@ -137,7 +137,7 @@ one — the site does not process payment, so the two can silently disagree.
 ### Launch offer
 - **Phase 1** — first 50 members: 10% off via passcode
 - Phase 1 sign-up opens **Sunday**
-- **Gym opens 5th of October.** Title, og:title/description, hero badge, hero
+- **Gym opens 2nd of November.** Title, og:title/description, hero badge, hero
   sub and both marquee copies all carry this date — change them together.
 
 #### Discount passcode — `ELEV8`
