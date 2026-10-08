@@ -85,7 +85,7 @@ progress → pricing → social → contact → footer.
   by reading `position` and clears `--cover` itself, so no JS change is
   needed if the breakpoints move. The pinned tops also add `--banner-h` —
   see the ticker below.
-- **The `.ticker` banner** ("Phase One Sign-Up Coming Soon!") lives *inside*
+- **The `.ticker` banner** ("Opening 2nd of November!") lives *inside*
   `<header class="nav">`, not as its own fixed element. The nav's height
   changes 86px → 74px as it sticks, so anything separately fixed underneath
   would need its `top` re-synced on every scroll. As a nav child it just
