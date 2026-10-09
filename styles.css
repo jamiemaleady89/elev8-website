@@ -299,29 +299,33 @@ input{font:inherit}
 }
 
 .brand{display:flex;align-items:center;gap:12px}
+/* No tile: the mark sits straight on the page. overflow:hidden stays because
+   it is what crops the square source down to the icon (see below) — it draws
+   nothing itself, the box look came from the border/background/radius that
+   used to be here. The logo PNG carries its own alpha, so there is no plate
+   behind it on either the black bar or the hero photo. */
+/* No tile and no crop rig. The source PNG is already cropped to the
+   barbell-8 icon and carries its own alpha, so the mark just sits on the
+   page. The icon is wider than it is tall (118x82), so `contain` fits it to
+   the width and leaves transparent space above and below rather than
+   slicing the dumbbell ends off — which is what the old cover+offset crop
+   did once the logo artwork changed. Nothing here depends on the artwork's
+   framing any more, so a future logo swap will not silently clip. */
 .brand__mark{
-  display:block;position:relative;
+  display:block;
   width:46px;height:46px;
-  border-radius:9px;overflow:hidden;
-  border:1px solid var(--hair-2);
-  background:var(--charcoal-2);
   flex:0 0 auto;
-  transition:border-color .3s,box-shadow .3s,transform .3s var(--ease);
+  transition:transform .3s var(--ease),filter .3s;
 }
-/* Crop the square Instagram logo down to just the barbell-8 icon — the
-   wordmark baked into it is unreadable at this size and duplicates the
-   text lockup sitting next to it. */
 .brand__mark img{
-  position:absolute;
-  width:180%;height:180%;
-  left:-40%;top:-6%;
-  object-fit:cover;
-  max-width:none;
+  width:100%;height:100%;
+  object-fit:contain;
 }
+/* Hover glow moves from the old border/box-shadow to a drop-shadow, which
+   follows the mark's actual silhouette now that there is no tile to light. */
 .brand:hover .brand__mark{
-  border-color:var(--red);
-  box-shadow:0 0 22px -4px rgba(229,9,20,.6);
   transform:translateY(-1px);
+  filter:drop-shadow(0 0 9px rgba(229,9,20,.6));
 }
 .brand__text{display:flex;flex-direction:column;line-height:1}
 .brand__name{
@@ -336,7 +340,7 @@ input{font:inherit}
   letter-spacing:.28em;text-transform:uppercase;
   color:var(--metal);margin-top:4px;
 }
-.brand--lg .brand__mark{width:64px;height:64px;border-radius:12px}
+.brand--lg .brand__mark{width:64px;height:64px}
 .brand--lg .brand__name{font-size:1.7rem}
 
 .nav__links{display:flex;align-items:center;gap:clamp(18px,2.4vw,34px)}

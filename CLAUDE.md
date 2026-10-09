@@ -37,6 +37,15 @@ trademark and must not be shown unless the gym holds a current licence.
 `assets/classes/zumba.jpg` and `assets/brands/zumba.svg` are now unused but
 still present; delete them only if the name is never coming back.
 
+**Logo:** the header, footer and favicon use `assets/elev8-logo-ig.png` —
+the darker rendition taken from the @elev8_fitnessgym Instagram profile
+picture on 2026-10-09. Instagram only serves that image at **150x150**
+without a login, so there is no high-res copy of this version. `og:image`
+still points at the older `assets/elev8-logo.png` (256px) because 150px is
+below Facebook's 200px minimum and link previews would drop the image
+entirely. `source/elev8-logo-4k.png` is the OLD logo, not this one — get the
+original file for the new mark and regenerate both.
+
 `assets/classes/dance-aerobics.jpg` is an Unsplash stock photo (photo ID
 `1619107372089-9b05ed524774`), 900x672, Unsplash License. It carries
 `klass--tint` for the same reason circuits.jpg does.
