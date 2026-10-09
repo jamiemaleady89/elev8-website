@@ -30,6 +30,17 @@ version is the good one — fuller headers and logging than older copies.
 Note: `assets/amenities/recovery.jpg` is an old AI-generated image replaced
 by a real photo. Still unused, still present.
 
+**Zumba is gone.** Renamed to "Dance Aerobics" on 2026-10-09 across the card,
+meta description, marquee, about lead and the Gym & Classes blurb. The Zumba®
+wordmark overlay was removed from the card with it — that mark is a licensed
+trademark and must not be shown unless the gym holds a current licence.
+`assets/classes/zumba.jpg` and `assets/brands/zumba.svg` are now unused but
+still present; delete them only if the name is never coming back.
+
+`assets/classes/dance-aerobics.jpg` is an Unsplash stock photo (photo ID
+`1619107372089-9b05ed524774`), 900x672, Unsplash License. It carries
+`klass--tint` for the same reason circuits.jpg does.
+
 `assets/classes/circuits.jpg` is an Unsplash stock photo (photo ID
 `1554284126-aa88f22d8b74`), cropped to the 900x672 all class images use.
 Unsplash License — free for commercial use, no attribution required. Swap it
@@ -160,10 +171,10 @@ The 10% is delivered by a passcode, **not** as a blanket "10% off your first
 
 Real: gym logo and 4 buildout reels (from Instagram), the café photo, the
 outdoor sauna/plunge-pool photo.
-AI-generated: hero video loop, 4 class photos (spin/step/zumba/hyrox).
+AI-generated: hero video loop, 3 class photos (spin/step/hyrox).
 Replace the AI ones with real shots as they become available.
 
-Official brand marks in `assets/brands/` — Zumba, TRYKA, HYROX (plus a yellow
+Official brand marks in `assets/brands/` — TRYKA, HYROX (plus a yellow
 HYROX variant). **These are trademarks**; using them implies the gym is
 licensed/affiliated. Worth confirming before launch.
 

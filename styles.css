@@ -1015,9 +1015,18 @@ input{font:inherit}
 }
 .klass:hover .klass__media img{transform:scale(1.07);filter:brightness(1.05) contrast(1.05)}
 
-/* Red wash for the Circuit Classes shot. That photo is monochrome, so it
-   read cold next to the other four, which all carry red studio lighting.
-   `mix-blend-mode:color` takes the hue from this layer and the luminance
+/* Red duotone for the stock class shots (Circuit Classes, Dance Aerobics).
+   Those photos carry no red studio lighting of their own, so they read cold
+   beside the three that do.
+
+   grayscale(1) first, so the result does not depend on whatever colour the
+   source photo happens to have — every tinted card lands on the same
+   black-and-white base and takes the same red. It is a no-op on an already
+   monochrome photo, so swapping in a colour shot later still matches. */
+.klass--tint .klass__media img{filter:grayscale(1) brightness(.9) contrast(1.05)}
+.klass--tint:hover .klass__media img{filter:grayscale(1) brightness(1.05) contrast(1.05)}
+
+/* `mix-blend-mode:color` then takes the hue from this layer and the luminance
    from the photo underneath — a true tint rather than a red film laid over
    the top, so the blacks stay black instead of turning maroon. Paints under
    .klass__media::after, which still lays its scrim over everything. */
