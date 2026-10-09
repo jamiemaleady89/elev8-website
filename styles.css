@@ -984,6 +984,88 @@ input{font:inherit}
    its own row reads as a layout bug rather than a design. The 3-up band
    carries 3+2, which still balances; 4-up is deliberately skipped since it
    would orphan the fifth card. */
+/* ─────────── Weekly timetable ─────────── */
+.timetable{margin-bottom:clamp(30px,3.5vw,44px)}
+.timetable__head{
+  display:flex;align-items:baseline;justify-content:space-between;
+  gap:16px;flex-wrap:wrap;margin-bottom:16px;
+}
+.timetable__title{
+  font-family:var(--display);
+  font-size:clamp(1.3rem,2.6vw,1.9rem);
+  font-weight:400;text-transform:uppercase;color:var(--white);
+  line-height:1;
+}
+.timetable__title em{font-style:normal;color:var(--red)}
+/* Only shown where the table actually overflows — the min-width below is
+   660px, so above roughly 760px of viewport there is nothing to swipe and
+   the hint would be a lie. */
+.timetable__hint{display:none}
+@media (max-width:760px){
+  .timetable__hint{
+    display:block;
+    font-family:var(--cond);
+    font-size:.74rem;font-weight:600;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--metal);
+  }
+}
+
+/* The grid is 7 columns wide and will not shrink to a phone without turning
+   the class names into vertical letter soup, so it scrolls sideways instead.
+   tabindex on the wrapper is deliberate: a scrollable region has to be
+   reachable by keyboard or the far columns are unreachable without a mouse. */
+.timetable__scroll{
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  border:1px solid var(--hair);
+  background:var(--charcoal);
+}
+.timetable__scroll:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+
+.sched{
+  width:100%;
+  border-collapse:collapse;
+  min-width:660px;           /* below this the cells start clipping names */
+  font-family:var(--cond);
+}
+.sched th,.sched td{
+  border:1px solid var(--hair);
+  padding:10px 12px;
+  text-align:center;
+  vertical-align:middle;
+  white-space:nowrap;
+}
+.sched thead th{
+  font-size:.76rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--white);
+  background:var(--red);
+  border-color:rgba(0,0,0,.35);
+}
+/* Time column stays put while the days scroll past, otherwise you lose track
+   of which row you are reading once Wednesday is off-screen. */
+.sched tbody th{
+  position:sticky;left:0;z-index:1;
+  background:var(--charcoal-2);
+  font-size:.8rem;font-weight:700;
+  letter-spacing:.08em;
+  color:var(--metal-lt);
+  font-variant-numeric:tabular-nums;
+}
+.sched td{
+  font-size:.86rem;font-weight:600;
+  letter-spacing:.02em;
+  color:var(--white);
+  background:rgba(255,255,255,.02);
+}
+.sched td:empty{background:transparent}
+.sched tbody tr:hover td:not(:empty){background:rgba(229,9,20,.14)}
+
+@media (max-width:560px){
+  .sched th,.sched td{padding:9px 10px}
+  .sched td{font-size:.8rem}
+}
+
 .classes{
   display:grid;
   grid-template-columns:repeat(5,1fr);
