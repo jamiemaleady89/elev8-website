@@ -178,8 +178,9 @@ The 10% is delivered by a passcode, **not** as a blanket "10% off your first
 
 ## Media
 
-Real: gym logo and 4 buildout reels (from Instagram), the café photo, the
-outdoor sauna/plunge-pool photo.
+Real: gym logo and 4 buildout reels (from Instagram), the café photo
+(replaced 2026-10-11 with the owner's own shot of the finished café, cropped
+4:3 from a portrait original), the outdoor sauna/plunge-pool photo.
 AI-generated: hero video loop, 3 class photos (spin/step/hyrox).
 Replace the AI ones with real shots as they become available.
 
