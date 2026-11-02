@@ -105,7 +105,7 @@ progress → pricing → social → contact → footer.
   by reading `position` and clears `--cover` itself, so no JS change is
   needed if the breakpoints move. The pinned tops also add `--banner-h` —
   see the ticker below.
-- **The `.ticker` banner** ("Opening 2nd of November!") lives *inside*
+- **The `.ticker` banner** ("Now Open!") lives *inside*
   `<header class="nav">`, not as its own fixed element. The nav's height
   changes 86px → 74px as it sticks, so anything separately fixed underneath
   would need its `top` re-synced on every scroll. As a nav child it just
@@ -154,25 +154,17 @@ removed from the site on 2026-08-18, along with the Phase 2 tier (members
 reintroduce fee copy without checking the Ashbourne portal actually charges
 one — the site does not process payment, so the two can silently disagree.
 
-### Launch offer
-- **Phase 1** — first 50 members: 10% off via passcode
-- Phase 1 sign-up opens **Sunday**
-- **Gym opens 2nd of November.** Title, og:title/description, hero badge, hero
-  sub and both marquee copies all carry this date — change them together.
+**The gym opened 2nd November 2026.** The site reads "Now Open" in the
+`<title>`, meta description, og:title/og:description, hero badge, hero sub,
+both `.marquee__track` lines and all six `.ticker__seq` spans. Change them
+together, and keep the two ticker blocks and the two marquee lines
+byte-identical or their loops visibly jump.
 
-#### Discount passcode — `ELEV8`
-The 10% is delivered by a passcode, **not** as a blanket "10% off your first
-3 months". Wording matters here and is easy to get wrong:
-- **One use only**, per member.
-- Spends against **either** a 3-month sign-up **or** the first month of a
-  monthly plan — **one or the other, not both**.
-- It is **not** 10% off three months of a monthly plan.
-- Displayed in `.passcode`, directly above the outbound button in `#signup`,
-  so it is read before anyone leaves for the portal. Also referenced in the
-  Phase 1 tier and the contact footnote — change all three together.
-- Signup CTAs scroll to `#signup` at the end of pricing; that block holds the
-  only outbound link:
-  `https://secure.ashbournemanagement.co.uk/signup/membership?ownerGroup=GRIEL5`
+**There is no discount, promo code or launch offer.** The `ELEV8` passcode
+and the 10% founding-member discount were removed from the site on
+2026-11-02, along with the Launch Offer tier block, the `.passcode` block
+in `#signup` and the contact footnote. Their CSS (`.tiers`, `.tier*`,
+`.passcode*`) is gone too — do not reintroduce the markup without it.
 
 ---
 
