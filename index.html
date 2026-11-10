@@ -789,8 +789,12 @@
       </div>
     </div>
 
-    <div class="footer__bar reveal" style="--i:1">
+    <!-- No .reveal here on purpose. This bar is the last thing in the document
+         and shorter than the observer's 10% bottom margin, so on any viewport
+         taller than ~730px it could never intersect and stayed invisible. -->
+    <div class="footer__bar">
       <p>&copy; <span id="yr">2026</span> ELEV8 Fitness Gym. Clane, Co. Kildare, Ireland.</p>
+      <a class="footer__legal" href="/privacy">Privacy Policy</a>
       <p class="footer__hours">Mon–Fri 6AM–9PM · Sat 9AM–4PM · Sun 9AM–3PM</p>
     </div>
   </div>
