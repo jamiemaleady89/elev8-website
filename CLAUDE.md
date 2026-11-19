@@ -160,6 +160,12 @@ both `.marquee__track` lines and all six `.ticker__seq` spans. Change them
 together, and keep the two ticker blocks and the two marquee lines
 byte-identical or their loops visibly jump.
 
+**Sign-up is in person only.** Online sign-up (the Ashbourne membership
+portal link in `#signup`) was removed on 2026-11-19 — members call in to the
+gym. The nav, mobile-menu and hero buttons read "Call In & Sign Up" and
+scroll to `#signup`, whose button now goes to `#contact`. Do not relink the
+portal unless the owner reinstates online sign-up.
+
 **There is no discount, promo code or launch offer.** The `ELEV8` passcode
 and the 10% founding-member discount were removed from the site on
 2026-11-02, along with the Launch Offer tier block, the `.passcode` block

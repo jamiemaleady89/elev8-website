@@ -221,10 +221,9 @@ input{font:inherit}
 }
 .btn--red:active{transform:translateY(0) scale(.985)}
 
-/* White fill, red label — used only by the three "Founding Members Sign Up"
-   buttons (nav, mobile menu, hero). The outbound "Sign Up Now" in #signup
-   and the contact buttons deliberately stay --red, so the one button that
-   actually leaves the site is still the loudest thing on the page. */
+/* White fill, red label — used only by the three "Call In & Sign Up"
+   buttons (nav, mobile menu, hero), which scroll to #signup. The "Find the
+   Gym" button there and the contact buttons deliberately stay --red. */
 .btn--white{
   background:#fff;
   color:var(--red);
@@ -917,6 +916,15 @@ input{font:inherit}
 /* ═══════════════ RESPONSIVE ═══════════════ */
 @media (max-width:1000px){
   .sec-head--split{grid-template-columns:1fr;gap:24px;align-items:start}
+}
+
+/* "Call In & Sign Up" is ~30px longer than the label it replaced, and just
+   above the burger breakpoint the nav links leave it no room — it wrapped
+   onto two lines. Hold it to one line and trim its tracking and padding in
+   that band only. */
+.nav__actions .btn--sm{white-space:nowrap}
+@media (max-width:980px){
+  .nav__actions .btn--sm{padding-inline:14px;letter-spacing:.06em}
 }
 
 @media (max-width:860px){
