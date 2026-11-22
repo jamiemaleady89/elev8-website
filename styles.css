@@ -1335,7 +1335,7 @@ input{font:inherit}
 }
 .signup .btn{min-width:min(320px,100%)}
 .signup__ext{font-size:1.1em;line-height:1}
-
+.signup__fine{
   margin-top:16px;
   font-size:.84rem;color:var(--metal);
 }

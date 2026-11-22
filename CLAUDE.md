@@ -132,20 +132,21 @@ progress → pricing → social → contact → footer.
 
 ## Content facts (confirmed by the owner)
 
-- **Hours** Mon–Fri 6am–9pm · Sat 9am–4pm · Sun 9am–3pm
+- **Hours** Mon–Fri 6am–9pm · Sat 9am–4pm · Sun & bank holidays 9am–3pm
 - **Address** Capdoo, Clane, Co. Kildare · Eircode **W91 EC9X** · free parking
 - **Phone** 087 385 2722 · **Email** elev8fitnessgyms@gmail.com
 - **Over 18s only**
 - Instagram `@elev8_fitnessgym` · Facebook `elev8fitnessgym`
 
-### Pricing (6 stacking cards)
+### Pricing (7 stacking cards — updated 2026-11-22)
 | | |
 |---|---|
 | Gym Floor Only | €70/mo |
-| Gym & Classes | Gym + 8 classes €130/mo · Gym + 12 classes €150/mo |
+| Gym + Unlimited Classes | €90/mo · 3mo €255 · 6mo €495 |
 | Upfront standard | 3mo €200 · 6mo €395 · 12mo €770 |
-| Student | €55/mo · €155 · €300 · €575 |
-| Class packs | 8 classes €80 · 12 classes €100 — mix and match, must be used within the month |
+| Student (valid student ID) | €55/mo · €155 · €300 · €575 |
+| Unlimited Classes (classes only) | €60/mo · 3mo €175 · 6mo €345 — no gym membership required |
+| Individual Classes | Class pass €12 · Day pass €15 |
 | Outdoor sauna + plunge pool | €10 per session, members only |
 
 **There is no sign-up / admin / joining fee.** The €25 one-off admin fee was
